@@ -1,0 +1,57 @@
+﻿body{
+
+}
+
+/*SEARCH BAR*/
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input .fa-search{
+    font-size: 18px;
+}
+
+#custom-search-input .fa-map-marker-alt{
+    font-size: 22px;
+    color: #28a745;
+}
+
+/*--------- CARROUSEL RESTO D'OR ----------*/
+
+
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+/*================================================*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.carousel-item > div {
+    float: left;
+}
+.carousel-by-item [class*="cloneditem-"] {
+    display: none;
+}
+h2{
+    text-align:center;
+    padding: 20px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 5rem;
+    background-color: green;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+
+}
+
+/*----------- STAR RATING ----------------*/
+.checked {
+    color: orange;
+}
+
