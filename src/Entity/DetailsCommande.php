@@ -46,11 +46,11 @@ class DetailsCommande
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Menu", inversedBy="commandes")
      */
-    private $menus;
+    private $menu;
 
     public function __construct()
     {
-        $this->menus = new ArrayCollection();
+        $this->menu = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,15 +97,15 @@ class DetailsCommande
     /**
      * @return Collection|Menu[]
      */
-    public function getMenus(): Collection
+    public function getMenu(): Collection
     {
-        return $this->menus;
+        return $this->menu;
     }
 
     public function addMenu(Menu $menu): self
     {
-        if (!$this->menus->contains($menu)) {
-            $this->menus[] = $menu;
+        if (!$this->menu->contains($menu)) {
+            $this->menu[] = $menu;
         }
 
         return $this;
@@ -113,8 +113,8 @@ class DetailsCommande
 
     public function removeMenu(Menu $menu): self
     {
-        if ($this->menus->contains($menu)) {
-            $this->menus->removeElement($menu);
+        if ($this->menu->contains($menu)) {
+            $this->menu->removeElement($menu);
         }
 
         return $this;
