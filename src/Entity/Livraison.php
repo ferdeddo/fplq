@@ -50,7 +50,7 @@ class Livraison
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="livraison")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="livraisons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $membre;

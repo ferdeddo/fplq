@@ -52,6 +52,13 @@ class Restaurant
     private $ville;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="telephone", type="integer", nullable=false)
+     */
+    private $telephone;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="horaires", type="string", length=80, nullable=false)
@@ -71,13 +78,6 @@ class Restaurant
      * @ORM\Column(name="prix_livraison", type="integer", nullable=false)
      */
     private $prixLivraison;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=50, nullable=false)
-     */
-    private $type;
 
     /**
      * @var string
@@ -103,11 +103,17 @@ class Restaurant
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
      */
-    private $menu;
+    private $menus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
 
     public function __construct()
     {
-        $this->menu = new ArrayCollection();
+        $this->menus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +169,18 @@ class Restaurant
         return $this;
     }
 
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
     public function getHoraires(): ?string
     {
         return $this->horaires;
@@ -195,18 +213,6 @@ class Restaurant
     public function setPrixLivraison(int $prixLivraison): self
     {
         $this->prixLivraison = $prixLivraison;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -247,18 +253,30 @@ class Restaurant
         return $this;
     }
 
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Menu[]
      */
-    public function getMenu(): Collection
+    public function getMenus(): Collection
     {
-        return $this->menu;
+        return $this->menus;
     }
 
     public function addMenu(Menu $menu): self
     {
-        if (!$this->menu->contains($menu)) {
-            $this->menu[] = $menu;
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
             $menu->setRestaurant($this);
         }
 
@@ -267,8 +285,8 @@ class Restaurant
 
     public function removeMenu(Menu $menu): self
     {
-        if ($this->menu->contains($menu)) {
-            $this->menu->removeElement($menu);
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
             // set the owning side to null (unless already changed)
             if ($menu->getRestaurant() === $this) {
                 $menu->setRestaurant(null);
@@ -277,6 +295,5 @@ class Restaurant
 
         return $this;
     }
-
 
 }
