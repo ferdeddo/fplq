@@ -10,7 +10,7 @@ namespace App\Controller\fplq;
 
 
 use App\Entity\Membre;
-use App\form\MembreFormType;
+use App\Form\MembreFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -20,6 +20,9 @@ class MembreController extends AbstractController
 {
     /**
      * @Route("/inscription", name="membre_inscription")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -48,7 +51,7 @@ class MembreController extends AbstractController
                 'Félicitations, votre inscription a bien été validée!');
 
             # Redirection
-            return $this->redirectToRoute('security_connexion');
+            return $this->redirectToRoute('index');
         }
         # Affichage dans la Vue
         return $this->render('membre/inscription.html.twig', [

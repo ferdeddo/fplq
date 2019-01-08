@@ -43,8 +43,8 @@ class Membre implements UserInterface
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      * @Assert\NotBlank(message="Entrez votre nom SVP.")
      * @Assert\Length(
-     *     min="5",
-     *     minMessage="votre nom doit comporter au moins 5 caracteres.",
+     *     min="3",
+     *     minMessage="votre nom doit comporter au moins 3 caracteres.",
      *     max="20",
      *     maxMessage="votre nom est trop long, 20 caractères maximum.")
      */
@@ -56,8 +56,8 @@ class Membre implements UserInterface
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      * @Assert\NotBlank(message="Entrez votre nom SVP.")
      * @Assert\Length(
-     *     min="5",
-     *     minMessage="votre prénom doit comporter au moins 5 caracteres.",
+     *     min="3",
+     *     minMessage="votre prénom doit comporter au moins 3 caracteres.",
      *     max="20",
      *     maxMessage="votre prénom est trop long, 20 caractères maximum.")
      */
@@ -67,6 +67,7 @@ class Membre implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=80, nullable=false)
+     * @Assert\Email(message="Verifiez votre email")
      */
     private $email;
 

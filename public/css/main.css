@@ -2,6 +2,11 @@
 
 }
 
+/*CLASS ACTIVE*/
+.active{
+    background-color: rgba(255, 255, 255, 0.21);
+}
+
 /*SEARCH BAR*/
 #custom-search-input{
     padding: 3px;

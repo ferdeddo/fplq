@@ -6,7 +6,7 @@
  * Time: 14:42
  */
 
-namespace App\form;
+namespace App\Form;
 
 
 
@@ -38,17 +38,18 @@ class MembreFormType extends AbstractType
                 ]
             ])
 
-            ->add('password', PasswordType::class, [
-                'label' => "Mot de passe",
-                'attr' => [
-                    'placeholder' => "Saisissez votre mot de passe"
-                ]
-            ])
 
             ->add('email', EmailType::class, [
                 'label'=>"Email",
                 'attr'=> [
                     'placeholder'=>'Entrez votre Email'
+                ]
+            ])
+
+            ->add('password', PasswordType::class, [
+                'label' => "Mot de passe",
+                'attr' => [
+                    'placeholder' => "Saisissez votre mot de passe"
                 ]
             ])
 
