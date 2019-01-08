@@ -1,5 +1,4 @@
 {% extends "layout.html.twig" %}
-{% set active = 'Accueuil' %}
 
 {% block page_title %}
     Accueil
@@ -15,11 +14,15 @@
             <h3 class="text-success font-weight-bold">Cliquer c'est manger</h3>
             <p>Faites-vous livrer les meilleurs restos près de chez vous avec Fais Pas La Queue.</p>
 
-            <div class="input-group mt-3 mb-3">
+            <div class="input-group mt-3 mb-3" id="custom-search-input">
                 <img class="mr-1" src="{{ asset('images/logo.png') }}" alt="logo" width="38" height="38">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <span class="input-group-btn">
+                    <i class="mt-2 fas fa-map-marker-alt"></i>
+                </span>
+                <input class="form-control" type="text" placeholder="Entrez votre adresse" aria-label="Search">
+
                 <div class="input-group-append">
-                    <button class="btn  btn-success" type="button" id="button-addon2">J'ai Faim</button>
+                    <button class="btn  btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> J'ai Faim</button>
                 </div>
             </div>
         </section>
@@ -32,184 +35,38 @@
                     <div class="row">
                         <div id="slider-1" class="carousel carousel-by-item slide" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
-
                                 {% for restaurant in restaurants %}
-                                <div class="carousel-item active">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-                                            <img class="d-block card-img-top img-fluid" src="{{ asset('images/product/indien.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Taj Mahal</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        7 Rue de Brie,<br>
-                                                        78310 MAUREPAS <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Fines spécialités indiennes, dont grillades au four tandooti, dans un cadr feutré avec boiseries et statues.</p>
-                                                {#STAR RATING#}
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                            <div class="card" style="width: 20rem;" >
+                                                <img class="d-block card-img-top img-fluid" src="{{ asset('images/product/'~restaurant.photo) }}" alt="First slide">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{restaurant.nom}}</h5>
+                                                    <address class="h6">
+                                                        <small>
+                                                            {{restaurant.adresse}}<br>
+                                                            {{restaurant.codePostal}} {{restaurant.ville}} <br>
+                                                            {{restaurant.telephone}}
+                                                        </small>
+                                                    </address>
+                                                    <p class="card-text">{{restaurant.description}}</p>
+                                                    {#STAR RATING#}
+                                                    <div class="container mb-2 text-center">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <a href="#" class="btn btn-success">Je mange</a>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 {% endfor %}
-                                <div class="carousel-item">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-                                            <img class="d-block card-img-top " src="{{ asset('images/product/jap.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Asian Food</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        7 Rue de Brie,<br>
-                                                        78310 MAUREPAS <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-                                            <img class="d-block card-img-top " src="{{ asset('images/product/pizza.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Trappito</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        7 Rue de Brie,<br>
-                                                        78310 MAUREPAS <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-                                            <img class="d-block card-img-top " src="{{ asset('images/product/burger.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Eat's Time</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        7 Rue de Brie,<br>
-                                                        78310 MAUREPAS <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-                                            <img class="d-block card-img-top " src="{{ asset('images/product/chicken.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Chicken Minute</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        56 Rue Jean Jaurès,<br>
-                                                        78190 TRAPPES <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Chicken Minute est un fast food au concept innovant spécialisé dans le Fried Chicken. Etant notre...</p>
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="card" style="width: 20rem;" >
-
-                                            <img class="d-block card-img-top " src="{{ asset('images/product/tacos.jpg') }}" alt="First slide">
-                                            <div class="card-body">
-                                                <h5 class="card-title">O'TACOS</h5>
-                                                <address class="h6">
-                                                    <small>
-                                                        7 Rue de Brie,<br>
-                                                        78310 MAUREPAS <br>
-                                                        01.43.43.43.43
-                                                    </small>
-                                                </address>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                                <div class="container mb-2 text-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <a href="#" class="btn btn-success">Je mange</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <a class="carousel-control-prev" href="#slider-1" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
