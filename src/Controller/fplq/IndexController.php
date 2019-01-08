@@ -8,10 +8,11 @@
 
 namespace App\Controller\fplq;
 
-
-use Doctrine\DBAL\Types\TextType;
+use App\Entity\Restaurant;
+use App\Entity\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,10 +25,26 @@ class IndexController extends AbstractController
 
     /**
      * Page permettant d'afficher les menus d'un restaurant
-     * @Route("/listerestaurant", name="index_restaurant")
+     * @Route("/listerestaurants", name="index_restaurant")
      */
     public function listerestaurants()
     {
-        return $this->render('front/ListeRestaurants.html.twig');
+        $repository = $this->getDoctrine()
+            ->getRepository(Restaurant::class);
+
+        $restaurants = $repository->findBy([]);
+
+        return $this->render('front/ListeRestaurants.html.twig', [
+            'restaurants' => $restaurants
+        ]);
+    }
+
+    /**
+     * Page permettant d'afficher la liste des restaurant
+     * @Route("/menu", name="index_menu")
+     */
+    public function menu()
+    {
+        return $this->render('front/MenuRestaurants.html.twig');
     }
 }

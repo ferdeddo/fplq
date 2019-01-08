@@ -2,6 +2,10 @@ index:
   path: /
   controller: App\Controller\fplq\IndexController::index
 
+#index_menu:
+#  path: /menu
+#  controller: App\Controller\fplq\IndexController::menu
+
 accueil:
   path: /accueil
   controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
