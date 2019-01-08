@@ -45,12 +45,12 @@ class Menu
     private $photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="menu")
+     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="menus")
      */
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="menu")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
      */
     private $restaurant;
@@ -101,6 +101,18 @@ class Menu
         return $this;
     }
 
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
     /**
      * @return Collection|DetailsCommande[]
      */
@@ -128,18 +140,5 @@ class Menu
 
         return $this;
     }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
-
-        return $this;
-    }
-
 
 }

@@ -59,19 +59,24 @@ class Membre
     private $photo;
 
     /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
      */
-    private $livraison;
+    private $livraisons;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
      */
-    private $commande;
+    private $commandes;
 
     public function __construct()
     {
-        $this->livraison = new ArrayCollection();
-        $this->commande = new ArrayCollection();
+        $this->livraisons = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -139,18 +144,30 @@ class Membre
         return $this;
     }
 
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Livraison[]
      */
-    public function getLivraison(): Collection
+    public function getLivraisons(): Collection
     {
-        return $this->livraison;
+        return $this->livraisons;
     }
 
     public function addLivraison(Livraison $livraison): self
     {
-        if (!$this->livraison->contains($livraison)) {
-            $this->livraison[] = $livraison;
+        if (!$this->livraisons->contains($livraison)) {
+            $this->livraisons[] = $livraison;
             $livraison->setMembre($this);
         }
 
@@ -159,8 +176,8 @@ class Membre
 
     public function removeLivraison(Livraison $livraison): self
     {
-        if ($this->livraison->contains($livraison)) {
-            $this->livraison->removeElement($livraison);
+        if ($this->livraisons->contains($livraison)) {
+            $this->livraisons->removeElement($livraison);
             // set the owning side to null (unless already changed)
             if ($livraison->getMembre() === $this) {
                 $livraison->setMembre(null);
@@ -173,15 +190,15 @@ class Membre
     /**
      * @return Collection|Commande[]
      */
-    public function getCommande(): Collection
+    public function getCommandes(): Collection
     {
-        return $this->commande;
+        return $this->commandes;
     }
 
     public function addCommande(Commande $commande): self
     {
-        if (!$this->commande->contains($commande)) {
-            $this->commande[] = $commande;
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
             $commande->setMembre($this);
         }
 
@@ -190,8 +207,8 @@ class Membre
 
     public function removeCommande(Commande $commande): self
     {
-        if ($this->commande->contains($commande)) {
-            $this->commande->removeElement($commande);
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
             // set the owning side to null (unless already changed)
             if ($commande->getMembre() === $this) {
                 $commande->setMembre(null);

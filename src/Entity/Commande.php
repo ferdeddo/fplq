@@ -43,7 +43,7 @@ class Commande
     private $etat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="commande")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $membre;
