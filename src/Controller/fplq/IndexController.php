@@ -29,11 +29,20 @@ class IndexController extends AbstractController
     }
 
     /**
-     * Page permettant d'afficher les menus d'un restaurant
+     * Page permettant d'afficher la liste des restaurant
      * @Route("/listerestaurant", name="index_restaurant")
      */
     public function listerestaurants()
     {
         return $this->render('front/ListeRestaurants.html.twig');
+    }
+
+    /**
+     * Page permettant d'afficher la liste des restaurant
+     * @Route("/menu", name="index_menu")
+     */
+    public function menu()
+    {
+        return $this->render('front/MenuRestaurants.html.twig');
     }
 }
