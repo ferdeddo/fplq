@@ -29,7 +29,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * Page permettant d'afficher les menus d'un restaurant
+     * Page permettant d'afficher les restaurants
      * @Route("/listerestaurants", name="index_restaurant")
      */
     public function listerestaurants()
@@ -40,6 +40,22 @@ class IndexController extends AbstractController
         $restaurants = $repository->findBy([]);
 
         return $this->render('front/ListeRestaurants.html.twig', [
+            'restaurants' => $restaurants
+        ]);
+    }
+
+    /**
+     * Page permettant d'afficher les menus d'un restaurant
+     * @Route("/menurestaurants", name="index_menu")
+     */
+    public function menurestaurants()
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository(Restaurant::class);
+
+        $restaurants = $repository->findBy([]);
+
+        return $this->render('front/MenuRestaurants.html.twig', [
             'restaurants' => $restaurants
         ]);
     }
