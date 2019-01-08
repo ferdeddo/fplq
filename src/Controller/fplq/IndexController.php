@@ -9,8 +9,9 @@
 namespace App\Controller\fplq;
 
 
-use App\Entity\Restaurant;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,14 +19,7 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Restaurant::class);
-
-        $restaurants = $repository->findBy([]);
-
-        return $this->render('front/index.html.twig', [
-            'restaurants' => $restaurants
-        ]);
+        return $this->render('front/index.html.twig');
     }
 
     /**
