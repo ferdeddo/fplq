@@ -3,16 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Membre
- *
- * @ORM\Table(name="membre")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
  */
-class Membre
+class Membre implements UserInterface
 {
     /**
      * @var int
@@ -24,9 +22,18 @@ class Membre
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp", type="string", length=64, nullable=false)
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="N'oubliez pas votre mot de passe.")
+     * @Assert\Length(
+     *     min="8",
+     *     minMessage="Votre mot de passe est trop court. 8 caractères min.",
+     *     max="20",
+     *     maxMessage="Votre mot de passe est trop long. 20 caractères max."
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$/",
+     *     message="Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre."
+     * )
      */
     private $mdp;
 
@@ -34,6 +41,12 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Entrez votre nom SVP.")
+     * @Assert\Length(
+     *     min="5",
+     *     minMessage="votre nom doit comporter au moins 5 caracteres.",
+     *     max="20",
+     *     maxMessage="votre nom est trop long, 20 caractères maximum.")
      */
     private $nom;
 
@@ -41,6 +54,12 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Entrez votre nom SVP.")
+     * @Assert\Length(
+     *     min="5",
+     *     minMessage="votre prénom doit comporter au moins 5 caracteres.",
+     *     max="20",
+     *     maxMessage="votre prénom est trop long, 20 caractères maximum.")
      */
     private $prenom;
 
@@ -56,27 +75,30 @@ class Membre
      *
      * @ORM\Column(name="photo", type="string", length=180, nullable=true)
      */
-    private $photo;
 
     /**
      * @ORM\Column(type="array")
      */
     private $roles = [];
 
+
+    private $photo;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
      */
-    private $livraisons;
+
+    private $livraison;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
      */
-    private $commandes;
+    private $commande;
 
     public function __construct()
     {
-        $this->livraisons = new ArrayCollection();
-        $this->commandes = new ArrayCollection();
+        $this->livraison = new ArrayCollection();
+        $this->commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,12 +106,12 @@ class Membre
         return $this->id;
     }
 
-    public function getMdp(): ?string
+    public function getPassword(): ?string
     {
         return $this->mdp;
     }
 
-    public function setMdp(string $mdp): self
+    public function setPassword(string $mdp): self
     {
         $this->mdp = $mdp;
 
@@ -144,6 +166,64 @@ class Membre
         return $this;
     }
 
+    public function getLivraison()
+    {
+        return $this->livraison;
+    }
+
+    public function addLivraison(Livraison $livraison): self
+    {
+        if (!$this->livraison->contains($livraison)) {
+            $this->livraison[] = $livraison;
+            $livraison->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivraison(Livraison $livraison): self
+    {
+        if ($this->livraison->contains($livraison)) {
+            $this->livraison->removeElement($livraison);
+            // set the owning side to null (unless already changed)
+            if ($livraison->getMembre() === $this) {
+                $livraison->setMembre(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commande->contains($commande)) {
+            $this->commande[] = $commande;
+            $commande->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commande->contains($commande)) {
+            $this->commande->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getMembre() === $this) {
+                $commande->setMembre(null);
+            }
+        }
+
+        return $this;
+    }
+
+
     public function getRoles(): ?array
     {
         return $this->roles;
@@ -157,66 +237,34 @@ class Membre
     }
 
     /**
-     * @return Collection|Livraison[]
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
      */
-    public function getLivraisons(): Collection
+    public function getSalt()
     {
-        return $this->livraisons;
-    }
-
-    public function addLivraison(Livraison $livraison): self
-    {
-        if (!$this->livraisons->contains($livraison)) {
-            $this->livraisons[] = $livraison;
-            $livraison->setMembre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLivraison(Livraison $livraison): self
-    {
-        if ($this->livraisons->contains($livraison)) {
-            $this->livraisons->removeElement($livraison);
-            // set the owning side to null (unless already changed)
-            if ($livraison->getMembre() === $this) {
-                $livraison->setMembre(null);
-            }
-        }
-
-        return $this;
+        return null;
     }
 
     /**
-     * @return Collection|Commande[]
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
      */
-    public function getCommandes(): Collection
+    public function getUsername()
     {
-        return $this->commandes;
+        return $this->email;
     }
 
-    public function addCommande(Commande $commande): self
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setMembre($this);
-        }
-
-        return $this;
     }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->contains($commande)) {
-            $this->commandes->removeElement($commande);
-            // set the owning side to null (unless already changed)
-            if ($commande->getMembre() === $this) {
-                $commande->setMembre(null);
-            }
-        }
-
-        return $this;
-    }
-
-
 }
