@@ -1,0 +1,190 @@
+{% extends "layout.html.twig" %}
+
+{% block page_title %}
+   Liste restaurants
+{% endblock %}
+
+{% block content %}
+  <section class="container">
+      <h1 class="text-center">"xx" Restaurants livrent à "nom de la ville"</h1>
+      <hr>
+
+      <form class=" input-group container ">
+          <input class="form-control mr-sm-2" type="search" placeholder="Trouver un resto..." aria-label="Search">
+          <button class="input-group-append btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+
+      <div class="container">
+
+          <div class="product">
+              <div class="img-container">
+                  <img src="{{ asset('images/product/indien.jpg') }}">
+              </div>
+              <div class="product-info bordure_verticale">
+                  <div class="product-content">
+                      {#si restaurant d'or rajouté la couronne#}
+                      <h1>Taj Mahal <i class=" text-warning fas fa-crown"></i></h1>
+                      <p>Indien</p>
+
+                      <address class="h6 ml-5">
+                          <small>
+                              7 Rue de Brie,<br>
+                              78310 MAUREPAS <br>
+                              01.43.43.43.43
+                          </small>
+                      </address>
+
+                      <div class="buttons">
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         bouton par un bouton "je pré-commande"#}
+                          <a class="button btn-success" href="#">Voir le menu</a>
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         par "fermé - ouvre à ..:.." et le point devient rouge#}
+                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouvert de 11:30 à 23:00</span>
+
+                      </div>
+
+                  </div>
+
+
+              </div>
+              <div class="text-warning my-auto mr-3">
+                  <ul>
+                      <li class="list-unstyled "><i class="fas fa-clock"></i> 11:30-23h00</li>
+                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i></i> Comm. min. 20,00 €</li>
+                      <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i> Livraison Gratuite </li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="product">
+              <div class="img-container">
+                  <img src="{{ asset('images/product/jap.jpg') }}">
+              </div>
+              <div class="product-info bordure_verticale">
+                  <div class="product-content">
+                      <h1>Asian Food</h1>
+                      <p>Japonais</p>
+
+                      <address class="h6 ml-5">
+                          <small>
+                              7 Rue de Brie,<br>
+                              78310 MAUREPAS <br>
+                              01.43.43.43.43
+                          </small>
+                      </address>
+
+                      <div class="buttons">
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         bouton par un bouton "je pré-commande"#}
+                          <a class="button btn-success" href="#">Voir le menu</a>
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         par "fermé - ouvre à ..:.." et le point devient rouge#}
+                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouvert de 11:30 à 23:00</span>
+
+                      </div>
+
+                  </div>
+
+
+              </div>
+              <div class="text-warning my-auto mr-3">
+                  <ul>
+                      <li class="list-unstyled "><i class="fas fa-clock"></i> 11:30-23h00</li>
+                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i></i> Comm. min. 20,00 €</li>
+                      <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i> Livraison Gratuite </li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="product">
+              <div class="img-container">
+                  <img src="{{ asset('images/product/pizza.jpg') }}">
+              </div>
+              <div class="product-info bordure_verticale">
+                  <div class="product-content">
+                      <h1>Trappito</h1>
+                      <p>pizza</p>
+
+                      <address class="h6 ml-5">
+                          <small>
+                              7 Rue de Brie,<br>
+                              78310 MAUREPAS <br>
+                              01.43.43.43.43
+                          </small>
+                      </address>
+
+                      <div class="buttons">
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         bouton par un bouton "je pré-commande"#}
+                          <a class="button btn-success" href="#">Voir le menu</a>
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         par "fermé - ouvre à ..:.." et le point devient rouge#}
+                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouvert de 11:30 à 23:00</span>
+
+                      </div>
+
+                  </div>
+
+
+              </div>
+              <div class="text-warning my-auto mr-3">
+                  <ul>
+                      <li class="list-unstyled "><i class="fas fa-clock"></i> 11:30-23h00</li>
+                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i></i> Comm. min. 20,00 €</li>
+                      <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i> Livraison Gratuite </li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="product">
+              <div class="img-container">
+                  <img src="{{ asset('images/product/burger.jpg') }}">
+              </div>
+              <div class="product-info bordure_verticale">
+                  <div class="product-content">
+                      <h1>Eat's Time</h1>
+                      <p>burger</p>
+
+                      <address class="h6 ml-5">
+                          <small>
+                              7 Rue de Brie,<br>
+                              78310 MAUREPAS <br>
+                              01.43.43.43.43
+                          </small>
+                      </address>
+
+                      <div class="buttons">
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         bouton par un bouton "je pré-commande"#}
+                          <a class="button btn-success" href="#">Voir le menu</a>
+
+                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
+                         par "fermé - ouvre à ..:.." et le point devient rouge#}
+                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouvert de 11:30 à 23:00</span>
+
+                      </div>
+
+                  </div>
+
+
+              </div>
+              <div class="text-warning my-auto mr-3">
+                  <ul>
+                      <li class="list-unstyled "><i class="fas fa-clock"></i> 11:30-23h00</li>
+                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i></i> Comm. min. 20,00 €</li>
+                      <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i> Livraison Gratuite </li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+  </section>
+{% endblock %}

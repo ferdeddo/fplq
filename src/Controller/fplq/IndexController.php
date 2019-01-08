@@ -9,7 +9,6 @@
 namespace App\Controller\fplq;
 
 
-use App\Entity\Restaurant;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,24 +17,15 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Restaurant::class);
-
-        $restaurants = $repository->findBy([]);
-
-        return $this->render('front/index.html.twig', [
-            'restaurants' => $restaurants
-        ]);
+        return $this->render('front/index.html.twig');
     }
 
     /**
      * Page permettant d'afficher les menus d'un restaurant
-     * @Route("/restaurant/{libellerestaurant}", name="index_restaurant", methods={"GET"})
-     * @param $libellerestaurant
-     * @return Response
+     * @Route("/listerestaurant", name="index_restaurant")
      */
-    public function restaurant($libellerestaurant = 'indien')
+    public function listerestaurants()
     {
-        return new Response("<html><body><h1>PAGE RESTAURANT: $libellerestaurant</h1></body></html>");
+        return $this->render('front/ListeRestaurants.html.twig');
     }
 }
