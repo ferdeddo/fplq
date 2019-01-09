@@ -59,4 +59,13 @@ class IndexController extends AbstractController
             'restaurants' => $restaurants
         ]);
     }
+
+    /**
+     * Page permettant d'afficher les menus d'un restaurant
+     * @Route("/interface_user", name="index_interface_user")
+     */
+    public function InterfaceUser()
+    {
+        return $this->render('membre/InterfaceUser.html.twig');
+    }
 }

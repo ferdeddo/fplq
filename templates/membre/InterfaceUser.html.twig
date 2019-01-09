@@ -1,0 +1,40 @@
+{% extends "layout.html.twig" %}
+
+{% set active = 'inscription' %}
+
+{% block page_title %}
+    user name
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-3">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+                    <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Dernières commandes</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Déconnexion</a>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabcard" aria-labelledby="v-pills-home-tab">
+                        <div class="card border-success" style="margin: 1em;">
+                            <div class="card-header">
+                                <h4 class="card-title">Nom</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="label label-success">Vincent AMAR</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
