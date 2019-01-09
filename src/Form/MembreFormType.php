@@ -22,24 +22,24 @@ class MembreFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('prenom', TextType::class, [
-            'label'=>"Prenom",
-            'attr'=> [
-                'placeholder'=>'Entrez votre prénom'
-            ]
-        ])
-            ->add('nom', TextType::class, [
-                'label'=>'Nom',
+        $builder->add('nom', TextType::class, [
+                'label'=>"Nom",
                 'attr'=> [
-                    'placeholder'=>'Entrez votre nom'
+                    'placeholder'=>"Entrez votre nom"
                 ]
             ])
 
+            ->add('prenom', TextType::class, [
+                'label'=>"Prenom",
+                'attr'=> [
+                    'placeholder'=>"Entrez votre prénom"
+                ]
+            ])
 
             ->add('email', EmailType::class, [
                 'label'=>"Email",
                 'attr'=> [
-                    'placeholder'=>'Entrez votre Email'
+                    'placeholder'=>"Entrez votre Email"
                 ]
             ])
 

@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
+ * @UniqueEntity(fields={"email"}, errorPath="email", message="Ce compte existe déjà !")
  */
 class Membre implements UserInterface
 {
@@ -54,7 +56,7 @@ class Membre implements UserInterface
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
-     * @Assert\NotBlank(message="Entrez votre nom SVP.")
+     * @Assert\NotBlank(message="Entrez votre prénom SVP.")
      * @Assert\Length(
      *     min="3",
      *     minMessage="votre prénom doit comporter au moins 3 caracteres.",
@@ -76,14 +78,12 @@ class Membre implements UserInterface
      *
      * @ORM\Column(name="photo", type="string", length=180, nullable=true)
      */
+    private $photo;
 
     /**
      * @ORM\Column(type="array")
      */
     private $roles = [];
-
-
-    private $photo;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
@@ -105,18 +105,6 @@ class Membre implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setPassword(string $mdp): self
-    {
-        $this->mdp = $mdp;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -151,6 +139,18 @@ class Membre implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->mdp;
+    }
+
+    public function setPassword(string $mdp): self
+    {
+        $this->mdp = $mdp;
 
         return $this;
     }

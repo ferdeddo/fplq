@@ -51,13 +51,6 @@ class Restaurant
     private $ville;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="telephone", type="integer", nullable=false)
-     */
-    private $telephone;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="horaires", type="string", length=80, nullable=false)
@@ -86,9 +79,9 @@ class Restaurant
     private $photo;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="note", type="integer", nullable=false)
+     * @ORM\Column(name="note", type="integer", nullable=true)
      */
     private $note;
 
@@ -164,18 +157,6 @@ class Restaurant
     public function setVille(string $ville): self
     {
         $this->ville = $ville;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?int
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(int $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }
