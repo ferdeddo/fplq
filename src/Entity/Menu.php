@@ -50,7 +50,7 @@ class Menu
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="menu")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="menus")
      * @ORM\JoinColumn(nullable=false)
      */
     private $restaurant;

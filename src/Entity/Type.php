@@ -75,6 +75,7 @@ class Type
         return $this->restaurants;
     }
 
+
     public function addRestaurant(Restaurant $restaurant): self
     {
         if (!$this->restaurants->contains($restaurant)) {
@@ -97,4 +98,6 @@ class Type
 
         return $this;
     }
+
+
 }
