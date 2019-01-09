@@ -43,4 +43,19 @@ class IndexController extends AbstractController
             'restaurants' => $restaurants
         ]);
     }
+    /**
+     * Page permettant d'afficher les menus d'un restaurant
+     * @Route("/menurestaurants", name="index_menu")
+     */
+    public function menurestaurants()
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository(Restaurant::class);
+
+        $restaurants = $repository->findBy([]);
+
+        return $this->render('front/menuRestaurants.html.twig', [
+            'restaurants' => $restaurants
+        ]);
+    }
 }

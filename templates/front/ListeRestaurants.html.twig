@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-
+{% set active='menu' %}
 {% block page_title %}
    Liste restaurants
 {% endblock %}
@@ -30,7 +30,6 @@
                           <small>
                               {{restaurant.adresse}}<br>
                               {{restaurant.codePostal}} {{restaurant.ville}} <br>
-                              {{restaurant.telephone}}
                           </small>
                       </address>
 

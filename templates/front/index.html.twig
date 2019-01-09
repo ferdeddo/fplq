@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-
+{% set active='home'%}
 {% block page_title %}
     Accueil
 {% endblock %}
@@ -51,7 +51,6 @@
                                                         <small>
                                                             {{restaurant.adresse}}<br>
                                                             {{restaurant.codePostal}} {{restaurant.ville}} <br>
-                                                            {{restaurant.telephone}}
                                                         </small>
                                                     </address>
                                                     <p class="card-text">{{restaurant.description}}</p>
