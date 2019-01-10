@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
         # Récupération du message d'erreur
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        # Dernier email saisie par l'utilisateur.
+        # Dernier email saisi par l'utilisateur.
         $lastEmail = $authenticationUtils->getLastUsername();
 
         return $this->render('security/connexion.html.twig', [

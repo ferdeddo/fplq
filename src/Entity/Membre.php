@@ -24,22 +24,6 @@ class Membre implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank(message="N'oubliez pas votre mot de passe.")
-     * @Assert\Length(
-     *     min="8",
-     *     minMessage="Votre mot de passe est trop court. 8 caractères min.",
-     *     max="20",
-     *     maxMessage="Votre mot de passe est trop long. 20 caractères max."
-     * )
-     * @Assert\Regex(
-     *     pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$/",
-     *     message="Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre."
-     * )
-     */
-    private $mdp;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
@@ -69,9 +53,26 @@ class Membre implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=80, nullable=false)
+     * @Assert\NotBlank(message="Saisissez votre email.")
      * @Assert\Email(message="Verifiez votre email")
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="N'oubliez pas votre mot de passe.")
+     * @Assert\Length(
+     *     min="8",
+     *     minMessage="Votre mot de passe est trop court. 8 caractères min.",
+     *     max="20",
+     *     maxMessage="Votre mot de passe est trop long. 20 caractères max."
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$/",
+     *     message="Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre."
+     * )
+     */
+    private $mdp;
 
     /**
      * @var string|null
@@ -79,11 +80,6 @@ class Membre implements UserInterface
      * @ORM\Column(name="photo", type="string", length=180, nullable=true)
      */
     private $photo;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
@@ -95,6 +91,11 @@ class Membre implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
      */
     private $commande;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -167,6 +168,18 @@ class Membre implements UserInterface
         return $this;
     }
 
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     public function getLivraison()
     {
         return $this->livraison;
@@ -220,19 +233,6 @@ class Membre implements UserInterface
                 $commande->setMembre(null);
             }
         }
-
-        return $this;
-    }
-
-
-    public function getRoles(): ?array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
 
         return $this;
     }
