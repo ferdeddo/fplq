@@ -248,7 +248,6 @@ class Membre implements UserInterface
     {
         return null;
     }
-
     /**
      * Returns the username used to authenticate the user.
      *
@@ -259,6 +258,7 @@ class Membre implements UserInterface
         return $this->email;
     }
 
+
     /**
      * Removes sensitive data from the user.
      *
@@ -267,5 +267,6 @@ class Membre implements UserInterface
      */
     public function eraseCredentials()
     {
+        // TODO: Implement eraseCredentials() method.
     }
 }

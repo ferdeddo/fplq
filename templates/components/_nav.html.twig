@@ -9,7 +9,7 @@
 
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
-            <li class="nav-item">
+            <li class="nav-item {% if active == 'connexion' %}active{% endif %}">
                 <a class="nav-link h6" href="{{ path('security_connexion') }}"><i class="fas fa-sign-in-alt"></i> Connexion </a>
             </li>
             <li  class="nav-item {% if active == 'inscription' %}active{% endif %}">
