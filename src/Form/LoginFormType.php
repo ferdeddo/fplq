@@ -33,7 +33,8 @@ class LoginFormType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Me connecter"
+                'label' => "Me connecter",
+                'attr' => array ( 'class' => 'submit' )
             ]);
     }
 

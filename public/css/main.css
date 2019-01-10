@@ -217,6 +217,29 @@ LISTE RESTAURANT Product Card Styles
     min-height: 650px;
 }
 
+/*-------------- INSCRIPTION / CONNEXION ----------------*/
+
+/*inscription*/
+.sign-up{
+    min-height: 550px;
+    margin-top: 8%;
+}
+
+/*connexion*/
+.sign-in{
+    min-height: 530px;
+    margin-top: 10%;
+}
+/*connexion/ inscription*/
+.submit{
+    background: #ffc107;
+    color: white;
+    width: 50%;
+    font-size: 1.25rem;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+    margin: 2rem 25% ;
+}
+
 footer{
 
 }

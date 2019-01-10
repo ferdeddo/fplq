@@ -42,7 +42,7 @@ class RestaurantFormType extends AbstractType
             ->add('adresse', TextareaType::class, [
                 'label'=>"adresse",
                 'attr'=> [
-                    'placeholder'=>'Entrez la    adresse'
+                    'placeholder'=>'Entrez votre adresse'
                 ]
             ])
 
@@ -75,13 +75,14 @@ class RestaurantFormType extends AbstractType
             ])
 
             ->add('photo', FileType::class, [
-                'label'=>"photos",
+                'label'=>"photo",
                 'attr'=> [
                     'class' => 'dropify'
                 ]
             ])
 
             ->add('description', TextareaType::class, [
+                'required'=> true,
                 'label'=>"description",
                 'attr'=> [
                     'placeholder'=>'Description'
@@ -99,7 +100,8 @@ class RestaurantFormType extends AbstractType
 
             ->add('submit', SubmitType::class,
                 [
-                    'label'=>"Inscrire mon restaurant"
+                    'label'=>"Inscrire mon restaurant",
+                    'attr' => array ( 'class' => 'submit' )
                 ]);
     }
     public function configureOptions(OptionsResolver $resolver)
@@ -108,4 +110,10 @@ class RestaurantFormType extends AbstractType
             'data_class' => Restaurant::class
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'form';
+    }
 }
+

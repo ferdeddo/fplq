@@ -31,12 +31,15 @@ class SecurityController extends AbstractController
         # Récupération du message d'erreur
         $error = $authenticationUtils->getLastAuthenticationError();
 
+        # Notification
+        $this->addFlash('notice_inscription',
+            'Bonjour ! vous êtes connecté.');
         # Dernier email saisi par l'utilisateur.
-        $lastEmail = $authenticationUtils->getLastUsername();
+        //$lastEmail = $authenticationUtils->getLastUsername();
 
         return $this->render('security/connexion.html.twig', [
             'form' => $form->createView(),
-            'last_email' => $lastEmail,
+//            'last_email' => $lastEmail,
             'error' => $error
         ]);
     }

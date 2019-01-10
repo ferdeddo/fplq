@@ -6,13 +6,15 @@
     S'inscrire
 {% endblock %}
 
-
 {% block content %}
+
     <div class="container">
-    <div>
-        <div>
-            <h3 class="text-center"> S'inscrire </h3>
-            {{ form(form, {attr:{novalidate: 'novalidate' }}) }}
+        <div class=" sign-up row justify-content-center">
+            <div class="col-8">
+                <h2 class="text-center text-warning">
+                    Inscription
+                </h2>
+                {{ form(form, {attr:{novalidate: 'novalidate' }}) }}
             </div>
         </div>
     </div>
