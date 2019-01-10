@@ -16,6 +16,12 @@
                 <a class="nav-link h6"  href="{{ path('membre_inscription') }}">
                     <i class="far fa-edit"></i>Inscription</a>
             </li>
+            <li  class="nav-item {% if active == 'inscription restaurant' %}active{% endif %}">
+                {% if is_granted('ROLE_MEMBRE') %}
+                <a class="nav-link h6"  href="{{ path('restaurant_inscription') }}">
+                    <i class="far fa-edit"></i>Inscription restaurant</a>
+                {% endif %}
+            </li>
             <li class="nav-item">
                 <a class="nav-link h6" href="#">FAQ</a>
             </li>

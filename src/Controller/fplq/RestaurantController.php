@@ -9,6 +9,7 @@
 namespace App\Controller\fplq;
 
 use App\Controller\HelperTrait;
+use App\Entity\Membre;
 use App\Entity\Restaurant;
 use App\Form\RestaurantFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +31,7 @@ class RestaurantController extends AbstractController
     {
         # création d'un restaurant
         $restaurant = new Restaurant();
-
+        
         # creation du formulaire MembreFormType
         $form = $this->createForm(RestaurantFormType::class, $restaurant)
             ->handleRequest($request);
