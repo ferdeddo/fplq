@@ -12,6 +12,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "dropify": "^0.2.2",
         "jquery": "^3.3.1"
     }
 }

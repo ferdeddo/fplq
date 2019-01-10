@@ -30,7 +30,7 @@ class MembreFormType extends AbstractType
             ])
 
             ->add('prenom', TextType::class, [
-                'label'=>"Prenom",
+                'label'=>"Prénom",
                 'attr'=> [
                     'placeholder'=>"Entrez votre prénom"
                 ]
@@ -46,7 +46,7 @@ class MembreFormType extends AbstractType
             ->add('password', PasswordType::class, [
                 'label' => "Mot de passe",
                 'attr' => [
-                    'placeholder' => "Saisissez votre mot de passe"
+                    'placeholder' => "Entrez votre mot de passe"
                 ]
             ])
 

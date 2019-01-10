@@ -101,19 +101,37 @@ class Restaurant
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
-     */
-    private $menus;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="restaurants")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
+     */
+    private $menus;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Entree", mappedBy="restaurant")
+     */
+    private $entrees;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Dessert", mappedBy="restaurant")
+     */
+    private $desserts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Dessert", mappedBy="restaurant")
+     */
+    private $boissons;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->entrees = new ArrayCollection();
+        $this->desserts = new ArrayCollection();
+        $this->boissons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,24 +271,6 @@ class Restaurant
         return $this;
     }
 
-    /**
-     * @return Collection|Menu[]
-     */
-    public function getMenus(): Collection
-    {
-        return $this->menus;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menus->contains($menu)) {
-            $this->menus[] = $menu;
-            $menu->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
     public function getRoles(): ?array
     {
         return $this->roles;
@@ -279,19 +279,6 @@ class Restaurant
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-        if ($this->menus->contains($menu)) {
-            $this->menus->removeElement($menu);
-            // set the owning side to null (unless already changed)
-            if ($menu->getRestaurant() === $this) {
-                $menu->setRestaurant(null);
-            }
-        }
 
         return $this;
     }
@@ -313,5 +300,128 @@ class Restaurant
     }
 
 
+    /**
+     * @return Collection|Menu[]
+     */
+    public function getMenus(): Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menus->contains($menu)) {
+            $this->menus->removeElement($menu);
+            // set the owning side to null (unless already changed)
+            if ($menu->getRestaurant() === $this) {
+                $menu->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entree[]
+     */
+    public function getEntrees(): Collection
+    {
+        return $this->entrees;
+    }
+
+    public function addEntree(Entree $entree): self
+    {
+        if (!$this->entrees->contains($entree)) {
+            $this->entrees[] = $entree;
+            $entree->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntree(Entree $entree): self
+    {
+        if ($this->entrees->contains($entree)) {
+            $this->entrees->removeElement($entree);
+            // set the owning side to null (unless already changed)
+            if ($entree->getRestaurant() === $this) {
+                $entree->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dessert[]
+     */
+    public function getDesserts(): Collection
+    {
+        return $this->desserts;
+    }
+
+    public function addDessert(Dessert $dessert): self
+    {
+        if (!$this->desserts->contains($dessert)) {
+            $this->desserts[] = $dessert;
+            $dessert->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDessert(Dessert $dessert): self
+    {
+        if ($this->desserts->contains($dessert)) {
+            $this->desserts->removeElement($dessert);
+            // set the owning side to null (unless already changed)
+            if ($dessert->getRestaurant() === $this) {
+                $dessert->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Boisson[]
+     */
+    public function getBoissons(): Collection
+    {
+        return $this->boissons;
+    }
+
+    public function addBoisson(Boisson $boisson): self
+    {
+        if (!$this->boissons->contains($boisson)) {
+            $this->boissons[] = $boisson;
+            $boisson->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoisson(Boisson $boisson): self
+    {
+        if ($this->boissons->contains($boisson)) {
+            $this->boissons->removeElement($boisson);
+            // set the owning side to null (unless already changed)
+            if ($boisson->getRestaurant() === $this) {
+                $boisson->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
 
 }
