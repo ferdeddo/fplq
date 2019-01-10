@@ -10,6 +10,7 @@ namespace App\Controller\fplq\Security;
 
 use App\Form\LoginFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -21,7 +22,7 @@ class SecurityController extends AbstractController
      * @param AuthenticationUtils $authenticationUtils
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function connexion(AuthenticationUtils $authenticationUtils)
+    public function connexion( AuthenticationUtils $authenticationUtils)
     {
         # Création du Formulaire LoginFormType
         $form = $this->createForm(LoginFormType::class, [
@@ -34,11 +35,16 @@ class SecurityController extends AbstractController
         # Dernier email saisi par l'utilisateur.
         $lastEmail = $authenticationUtils->getLastUsername();
 
+        # Notification
+        $this->addFlash('notice_inscription',
+            'Bonjour, vous ettes maintenant conecté!');
+
         return $this->render('security/connexion.html.twig', [
             'form' => $form->createView(),
             'last_email' => $lastEmail,
             'error' => $error
         ]);
+
     }
 
     /**

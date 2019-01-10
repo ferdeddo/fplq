@@ -26,7 +26,7 @@ security:
                 login_path: security_connexion
                 check_path: security_connexion
                 username_parameter: app_login[email]
-                password_parameter: app_login[password]
+                password_parameter: app_login[mdp]
                 default_target_path: index
             provider: membre_provider
             logout:

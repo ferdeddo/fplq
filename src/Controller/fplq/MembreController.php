@@ -51,7 +51,7 @@ class MembreController extends AbstractController
                 'Félicitations, votre inscription a bien été validée!');
 
             # Redirection
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('security_connexion');
         }
         # Affichage dans la Vue
         return $this->render('membre/inscription.html.twig', [
