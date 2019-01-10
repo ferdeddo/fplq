@@ -40,10 +40,13 @@
                     {% endfor %}
                     <h2 class="text-warning">Restaurants d'Or <i class="fas fa-crown"></i></h2>
                     <div class="row">
+
                         <div id="slider-1" class="carousel carousel-by-item slide" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 {% for restaurant in restaurants %}
-                                    <div class="carousel-item active">
+                                    {#loop.index0 	permet  l'itération actuel de la boucle (l'index commence à 0)#}
+                                    <div data-slide-to="{{ loop.index0 }}"  class="carousel-item {% if loop.index0 == 0 %}active{% endif %}" >
+
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                             <div class="card" style="width: 20rem;" >
                                                 <img class="d-block card-img-top img-fluid" src="{{ asset('images/product/'~restaurant.photo) }}" alt="First slide">
@@ -71,6 +74,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 {% endfor %}
                             </div>

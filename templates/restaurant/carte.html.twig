@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% set active = 'carte' %}
+
+{% block page_title %}
+    Carte Restaurant
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% for message in app.flashes('notice_entree') %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div>
+            <div>
+                <h3 class="text-center"> Carte Restaurant </h3>
+                {{ form(form_entree, {attr:{novalidate: 'novalidate' }}) }}
+                {{ form(form_menu, {attr:{novalidate: 'novalidate' }}) }}
+                {{ form(form_dessert, {attr:{novalidate: 'novalidate' }}) }}
+                {{ form(form_boisson, {attr:{novalidate: 'novalidate' }}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

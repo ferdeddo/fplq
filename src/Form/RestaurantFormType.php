@@ -27,74 +27,74 @@ class RestaurantFormType extends AbstractType
         $builder
 
             ->add('nom', TextType::class, [
-            'label'=>"nom",
+            'label'=>"Nom",
             'attr'=> [
-                'placeholder'=>'Entrez le nom du restaurant'
+                'placeholder'=>"Entrez le nom du restaurant"
             ]
         ])
+
+            ->add('adresse', TextareaType::class, [
+                'label'=>"Adresse",
+                'attr'=> [
+                    'placeholder'=>"Entrez l'adresse du restaurant"
+                ]
+            ])
+
             ->add('code_postal', TextType::class, [
-                'label'=>'code postal',
+                'label'=>'Code postal',
                 'attr'=> [
                     'placeholder'=>"Entrez le code postal du restaurant"
                 ]
             ])
 
-            ->add('adresse', TextareaType::class, [
-                'label'=>"adresse",
-                'attr'=> [
-                    'placeholder'=>'Entrez votre adresse'
-                ]
-            ])
-
             ->add('ville', TextType::class, [
-                'label'=>"ville",
+                'label'=>"Ville",
                 'attr'=> [
                     'placeholder'=>'Entrez la ville'
                 ]
             ])
 
             ->add('horaires', TextType::class, [
-                'label'=>"horaires",
+                'label'=>"Horaires",
                 'attr'=> [
                     'placeholder'=>"Horaires d'ouverture"
                 ]
             ])
 
             ->add('commande_min', TextType::class, [
-                'label'=>"commande minimum",
+                'label'=>"Commande minimum",
                 'attr'=> [
-                    'placeholder'=>'Commande minimum'
+                    'placeholder'=>"Commande minimum"
                 ]
             ])
 
             ->add('prix_livraison', TextType::class, [
-                'label'=>"prix livraison",
+                'label'=>"Prix livraison",
                 'attr'=> [
-                    'placeholder'=>'Prix de livraison'
+                    'placeholder'=>"Prix de livraison"
                 ]
             ])
 
             ->add('photo', FileType::class, [
-                'label'=>"photo",
+                'label'=>"Photo",
                 'attr'=> [
-                    'class' => 'dropify'
+                    'class' => "dropify"
                 ]
             ])
 
             ->add('description', TextareaType::class, [
-                'required'=> true,
-                'label'=>"description",
+                'label'=>"Description",
                 'attr'=> [
-                    'placeholder'=>'Description'
+                    'placeholder'=>"Description"
                 ]
             ])
 
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'nom',
-                'label'=>"type",
+                'label'=>"Type",
                 'attr'=> [
-                    'placeholder'=>'Type de restaurant'
+                    'placeholder'=>"Type de restaurant"
                 ]
             ])
 

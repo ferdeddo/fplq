@@ -31,7 +31,7 @@ class RestaurantController extends AbstractController
         # création d'un restaurant
         $restaurant = new Restaurant();
 
-        # creation du formulaire MembreFormType
+        # creation du formulaire RestaurantFormType
         $form = $this->createForm(RestaurantFormType::class, $restaurant)
             ->handleRequest($request);
 
@@ -40,11 +40,12 @@ class RestaurantController extends AbstractController
 
             # 1. Traitement de l'upload de l'image
 
-            // $featuredImage stores the uploaded file
+            // $photo stores the uploaded file
             /** @var UploadedFile $photo */
             $photo = $restaurant->getPhoto();
 
-            $fileName = $this->slugify($restaurant->getPhoto());
+            $fileName = $this->slugify($restaurant->getNom()). '.' .$photo->guessExtension();
+
             // Move the file to the directory where images are stored
             try {
                 $photo->move(
