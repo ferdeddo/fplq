@@ -7,12 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Menu
+ * Dessert
  *
- * @ORM\Table(name="menu")
+ * @ORM\Table(name="dessert")
  * @ORM\Entity
  */
-class Menu
+class Dessert
 {
     /**
      * @var int
@@ -52,12 +52,12 @@ class Menu
     private $photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="menu")
+     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="dessert")
      */
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="menus")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="desserts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $restaurant;
@@ -162,3 +162,4 @@ class Menu
 
 
 }
+
