@@ -8,14 +8,14 @@
 
 
 {% block content %}
-    <div class="container">
+    <div class="container user-interface">
         <br>
         <div class="row">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
-                    <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Dernières commandes</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Déconnexion</a>
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profile</a>
+                    <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list-alt"></i> Dernières commandes</a>
+                    <a class="nav-link " id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                 </div>
             </div>
             <div class="col-9">
@@ -23,16 +23,155 @@
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabcard" aria-labelledby="v-pills-home-tab">
                         <div class="card border-success" style="margin: 1em;">
                             <div class="card-header">
-                                <h4 class="card-title">Nom</h4>
+                                <h4 class="card-title">Coordonnées</h4>
                             </div>
                             <div class="card-body">
-                                <div class="label label-success">Vincent AMAR</div>
+                                <div class="label label-success">
+                                    <p><i class="far fa-id-card"></i> Vincent AMAR</p>
+                                    <hr>
+                                    <p><i class="fas fa-at"></i> ferdeddo@gmail.com</p>
+                                    <hr>
+                                    <p><i class="fas fa-phone"></i> O645454545</p>
+                                    <hr>
+                                    <div class="h6 custom-control-inline ">
+                                        <i class=" mt-2 fas fa-map-marker-alt"></i>
+                                        <p class="ml-2">2 rue de la boite<br>
+                                            78190 TRAPPES</p> <br>
+
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="/images/product/jap.jpg" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-5">
+
+                                {#si restaurant d'or rajouter la couronne#}
+                                <h3 >Le Jap<i class="text-warning fas fa-crown"></i></h3>
+
+                                <small>2 Square Paul Langevin, Trappes, France </small>
+                                <br>
+
+                                <small> 06/01/2019 19:38 </small>
+
+                                <p class="font-weight-bold mt-2">35,90 €</p>
+
+                            </div>
+                            <div class="col-4 bordure_verticale">
+                                <p>Détail de la commande :</p>
+                                <ul class="pr-2">
+                                    <li class="list-unstyled resume-menu">1 x Menu classiques yakitori plus</li>
+                                    <li class="list-unstyled resume-menu">1 x Brochette boeuf fromage</li>
+                                    <li class="list-unstyled resume-menu">1 x Brochette poulet</li>
+                                    <li class="list-unstyled resume-menu">1 x California poulet cuit</li>
+                                    <li class="list-unstyled resume-menu">1 x California poulet cuit</li>
+                                </ul>
+                            </div>
+                        </div> <hr>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="/images/product/burger.jpg" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-5">
+
+                                {#si restaurant d'or rajouter la couronne#}
+                                <h3 >Eat's Time<i class="text-warning fas fa-crown"></i></h3>
+
+                                <small>2 Square Paul Langevin, Trappes, France </small>
+                                <br>
+
+                                <small> 06/01/2019 19:38 </small>
+
+                                <p class="font-weight-bold mt-2">25,90 €</p>
+
+                            </div>
+                            <div class="col-4 bordure_verticale">
+                                <p>Détail de la commande :</p>
+                                <ul class="pr-2">
+                                    <li class="list-unstyled resume-menu">1 x Menu Enfant</li>
+                                    <li class="list-unstyled resume-menu">1 x Menu Burger le Classique</li>
+                                    <li class="list-unstyled resume-menu">1 x Tacos Medium</li>
+                                    <li class="list-unstyled resume-menu">1 x Chicken Whoper</li>
+
+                                </ul>
+                            </div>
+                        </div> <hr>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="/images/product/pizza.jpg" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-5">
+
+                                {#si restaurant d'or rajouter la couronne#}
+                                <h3 >Trappito<i class="text-warning fas fa-crown"></i></h3>
+
+                                <small>2 Square Paul Langevin, Trappes, France </small>
+                                <br>
+
+                                <small> 06/01/2019 19:38 </small>
+
+                                <p class="font-weight-bold mt-2">25,90 €</p>
+
+                            </div>
+                            <div class="col-4 bordure_verticale">
+                                <p>Détail de la commande :</p>
+                                <ul class="pr-2">
+                                    <li class="list-unstyled resume-menu">1 x Pizza mexicaine sénior</li>
+                                    <li class="list-unstyled resume-menu">1 x Pizza western sénior</li>
+                                    <li class="list-unstyled resume-menu">1 x Pizza Indiana sénior</li>
+                                </ul>
+                            </div>
+                        </div> <hr>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+                        <div class="card border-success" style="margin: 1em;">
+                            <div class="card-header">
+                                <h4 class="card-title">Déconnexion</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="label label-success">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Alerte !</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Êtes-vous sûr de vouloir vous déconnecter ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <button type="button" class="btn btn-danger">Se déconnecter</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

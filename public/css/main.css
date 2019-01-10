@@ -202,6 +202,21 @@ LISTE RESTAURANT Product Card Styles
     color: gray;
 }
 
+/*------------ USER INTERFACE -------------*/
+.bordure_verticale{
+    height: 100%;
+    border-left: 1px solid lightgray;
+}
+.bordure_verticale p{
+    font-size: 12px;
+}
+.resume-menu{
+    font-size: 10px;
+}
+.user-interface{
+    min-height: 650px;
+}
+
 footer{
 
 }
