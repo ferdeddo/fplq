@@ -129,54 +129,6 @@ LISTE RESTAURANT Product Card Styles
 #wrapper{
     min-height: 700px;
 }
-#sidebar-wrapper {
-
-
-    float: left;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: white;
-
-}
-
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-
-}
-
-/* Sidebar Styles */
-
-
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
-
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 289px;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-}
 
 /* Drop down menu restaurant */
 [data-toggle="collapse"]:after {
@@ -200,6 +152,13 @@ LISTE RESTAURANT Product Card Styles
 }
 #accordion small{
     color: gray;
+}
+/*--- AJOUTER AU PANIER -------*/
+.show-cart li {
+    display: flex;
+}
+.card {
+    margin-bottom: 20px;
 }
 
 /*------------ USER INTERFACE -------------*/

@@ -43,5 +43,10 @@ $(document).ready(function() {
     setcss(classes, item_1, item_inner_1);
 });
 
-/*----------- STAR RATING ----------------*/
+/*----------- MENU RESTAURANT ----------------*/
+// Ajouter un produit dans la side bar
+
+
+
+
 
