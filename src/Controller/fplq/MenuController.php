@@ -29,7 +29,7 @@ class MenuController extends AbstractController
     use HelperTrait;
 
     /**
-     * @Route("/carte_restaurant", name="carte_restaurant")
+     * @Route("admin/carte_restaurant", name="carte_restaurant")
      */
 
     public function carte(Request $request)
@@ -195,7 +195,7 @@ class MenuController extends AbstractController
             'form_entree' => $form_entree->createView(),
             'form_menu' => $form_menu->createView(),
             'form_dessert' => $form_dessert->createView(),
-            'form_boisson' => $form_boisson->createView()
+            'form_boisson' => $form_boisson->createView(),
         ]);
 
     }

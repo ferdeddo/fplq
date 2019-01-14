@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 class MembreController extends AbstractController
 {
@@ -40,6 +41,9 @@ class MembreController extends AbstractController
             # Encodage du mot de passe
             $membre->setPassword($passwordEncoder
                 ->encodePassword($membre, $membre->getPassword()));
+
+            #methode permettant de creer un utilisateur en ADMIN
+            #$membre->addRole("ROLE_ADMIN");
 
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();

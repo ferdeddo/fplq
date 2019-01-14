@@ -24,6 +24,7 @@ class SecurityController extends AbstractController
      */
     public function connexion( AuthenticationUtils $authenticationUtils)
     {
+
         # Création du Formulaire LoginFormType
         $form = $this->createForm(LoginFormType::class, [
             'email' => $authenticationUtils->getLastUsername()
@@ -35,18 +36,16 @@ class SecurityController extends AbstractController
         # Notification
         $this->addFlash('notice_inscription',
             'Bonjour ! vous êtes connecté.');
-        # Dernier email saisi par l'utilisateur.
-        //$lastEmail = $authenticationUtils->getLastUsername();
 
-        # Notification
-        $this->addFlash('notice_inscription',
-            'Bonjour, vous ettes maintenant conecté!');
+        # Dernier email saisi par l'utilisateur.
+        $lastEmail = $authenticationUtils->getLastUsername();
 
         return $this->render('security/connexion.html.twig', [
             'form' => $form->createView(),
 //            'last_email' => $lastEmail,
             'error' => $error
         ]);
+
 
     }
 

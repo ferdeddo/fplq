@@ -103,6 +103,11 @@ class Membre implements UserInterface
         $this->commande = new ArrayCollection();
     }
 
+    function addRole($role) {
+        $this->roles[] = $role;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,7 @@ class Membre implements UserInterface
     public function getRoles(): ?array
     {
         return $this->roles;
+
     }
 
     public function setRoles(array $roles): self

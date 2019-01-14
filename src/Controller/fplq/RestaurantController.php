@@ -11,6 +11,7 @@ namespace App\Controller\fplq;
 use App\Controller\HelperTrait;
 use App\Entity\Restaurant;
 use App\Form\RestaurantFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -23,7 +24,7 @@ class RestaurantController extends AbstractController
     use HelperTrait;
 
     /**
-     * @Route("/inscription_restaurant", name="restaurant_inscription")
+     * @Route("/admin/inscription_restaurant", name="restaurant_inscription")
      */
 
     public function inscription(Request $request)

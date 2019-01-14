@@ -47,7 +47,7 @@ class Entree
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=180, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=180, nullable=false)
      */
     private $photo;
 
@@ -108,12 +108,12 @@ class Entree
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setPhoto($photo): self
     {
         $this->photo = $photo;
 
