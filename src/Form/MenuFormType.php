@@ -54,7 +54,8 @@ class MenuFormType extends AbstractType
 
             ->add('submit', SubmitType::class,
                 [
-                    'label'=>"Ajouter mon menu"
+                    'label'=>"Ajouter mon menu",
+                    'attr' => array ( 'class' => 'submit' )
                 ]);
     }
     public function configureOptions(OptionsResolver $resolver)

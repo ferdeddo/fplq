@@ -54,7 +54,8 @@ class BoissonFormType extends AbstractType
 
             ->add('submit', SubmitType::class,
                 [
-                    'label'=>"Ajouter ma boisson"
+                    'label'=>"Ajouter ma boisson",
+                    'attr' => array ( 'class' => 'submit' )
                 ]);
     }
     public function configureOptions(OptionsResolver $resolver)

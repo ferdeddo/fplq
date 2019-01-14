@@ -13,6 +13,7 @@ use App\Entity\Boisson;
 use App\Entity\Dessert;
 use App\Entity\Entree;
 use App\Entity\Menu;
+use App\Entity\Restaurant;
 use App\Form\BoissonFormType;
 use App\Form\DessertFormType;
 use App\Form\EntreeFormType;
@@ -29,10 +30,11 @@ class MenuController extends AbstractController
     use HelperTrait;
 
     /**
-     * @Route("admin/carte_restaurant", name="carte_restaurant")
+     * @Route("/carte_restaurant/{id<\d+>}", name="carte_restaurant")
      */
 
-    public function carte(Request $request)
+
+    public function carte(Request $request, $restaurant)
     {
         # création d'une entrée, un menu, un dessert ou une boisson
         $entree = new Entree();
@@ -40,45 +42,53 @@ class MenuController extends AbstractController
         $dessert = new Dessert();
         $boisson = new Boisson();
 
-        # creation du formulaire EntreeFormType
+        # Récupération de l'Id du Restaurant
+        # $restaurant = $this->getDoctrine()
+        #    ->getRepository(Restaurant::class)
+        #    ->find($id);
+
+        # création du formulaire EntreeFormType
         $form_entree = $this->createForm(EntreeFormType::class, $entree)
             ->handleRequest($request);
 
-        # creation du formulaire MenuFormType
+        # création du formulaire MenuFormType
         $form_menu = $this->createForm(MenuFormType::class, $menu)
             ->handleRequest($request);
 
-        # creation du formulaire DessertFormType
+        # création du formulaire DessertFormType
         $form_dessert = $this->createForm(DessertFormType::class, $dessert)
             ->handleRequest($request);
 
-        # creation du formulaire BoissonFormType
+        # création du formulaire BoissonFormType
         $form_boisson = $this->createForm(BoissonFormType::class, $boisson)
             ->handleRequest($request);
 
         # Soumission des Formulaires
         if ($form_entree->isSubmitted() && $form_entree->isValid()) {
 
-            # 1. Traitement de l'upload de l'image
-
-            // $photo stores the uploaded file
-            /** @var UploadedFile $photo_entree */
             $photo_entree = $entree->getPhoto();
+            if(null !== $photo_entree) {
+                # 1. Traitement de l'upload de l'image
 
-            $fileName_entree = $this->slugify($entree->getNom()) . '.' . $photo_entree->guessExtension();
+                // $photo stores the uploaded file
+                /** @var UploadedFile $photo_entree */
+                $photo_entree = $entree->getPhoto();
 
-            // Move the file to the directory where images are stored
-            try {
-                $photo_entree->move(
-                    $this->getParameter('menus_assets_dir'),
-                    $fileName_entree
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                $fileName_entree = $this->slugify($entree->getNom()) . '.' . $photo_entree->guessExtension();
+
+                // Move the file to the directory where images are stored
+                try {
+                    $photo_entree->move(
+                        $this->getParameter('menus_assets_dir'),
+                        $fileName_entree
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                # Mise à jour de l'image
+                $entree->setPhoto($fileName_entree);
             }
-
-            # Mise à jour de l'image
-            $entree->setPhoto($fileName_entree);
 
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();

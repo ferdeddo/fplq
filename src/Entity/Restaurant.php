@@ -107,14 +107,14 @@ class Restaurant
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
-     */
-    private $menus;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Entree", mappedBy="restaurant")
      */
     private $entrees;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
+     */
+    private $menus;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Dessert", mappedBy="restaurant")
@@ -299,6 +299,36 @@ class Restaurant
         $this->type = $type;
     }
 
+    /**
+     * @return Collection|Entree[]
+     */
+    public function getEntrees(): Collection
+    {
+        return $this->entrees;
+    }
+
+    public function addEntree(Entree $entree): self
+    {
+        if (!$this->entrees->contains($entree)) {
+            $this->entrees[] = $entree;
+            $entree->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntree(Entree $entree): self
+    {
+        if ($this->entrees->contains($entree)) {
+            $this->entrees->removeElement($entree);
+            // set the owning side to null (unless already changed)
+            if ($entree->getRestaurant() === $this) {
+                $entree->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
 
     /**
      * @return Collection|Menu[]
@@ -325,37 +355,6 @@ class Restaurant
             // set the owning side to null (unless already changed)
             if ($menu->getRestaurant() === $this) {
                 $menu->setRestaurant(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Entree[]
-     */
-    public function getEntrees(): Collection
-    {
-        return $this->entrees;
-    }
-
-    public function addEntree(Entree $entree): self
-    {
-        if (!$this->entrees->contains($entree)) {
-            $this->entrees[] = $entree;
-            $entree->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntree(Entree $entree): self
-    {
-        if ($this->entrees->contains($entree)) {
-            $this->entrees->removeElement($entree);
-            // set the owning side to null (unless already changed)
-            if ($entree->getRestaurant() === $this) {
-                $entree->setRestaurant(null);
             }
         }
 
