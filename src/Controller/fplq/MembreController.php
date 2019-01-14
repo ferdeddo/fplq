@@ -29,7 +29,7 @@ class MembreController extends AbstractController
     {
         # création d'un membre
         $membre = new Membre();
-        $membre->setRoles(['ROLE_MEMBRE']);
+        # $membre->setRoles(['ROLE_MEMBRE']);
 
         # creation du formulaire MembreFormType
         $form = $this->createForm(MembreFormType::class, $membre)
@@ -43,7 +43,7 @@ class MembreController extends AbstractController
                 ->encodePassword($membre, $membre->getPassword()));
 
             #methode permettant de creer un utilisateur en ADMIN
-            #$membre->addRole("ROLE_ADMIN");
+            $membre->addRole("ROLE_ADMIN");
 
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();

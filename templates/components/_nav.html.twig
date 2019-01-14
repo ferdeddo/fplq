@@ -28,7 +28,7 @@
             </li>
             {% endif %}
             <li  class="nav-item  {% if active == 'admin/inscription_restaurant' %}active{% endif %}">
-                {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_ADMIN') %}
                 <a class="nav-link h6"  href="{{ path('restaurant_inscription') }}">
                     <i class="far fa-edit"></i>Inscription restaurant</a>
             </li>
@@ -45,6 +45,3 @@
      </div>
     </div>
 </nav>
-{#<div>#}
-    {#{{ dump(app.user) }}#}
-{#</div>#}

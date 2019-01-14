@@ -19,19 +19,6 @@ class EntreeRepository extends ServiceEntityRepository
         parent::__construct($registry, Entree::class);
     }
 
-    public function findOneByRestaurant($id)
-    {
-        return $this->createQueryBuilder('e')
-            // e.restaurant refers to the "restaurant" property on entree
-            ->innerJoin('e.restaurant', 'r')
-            // selects all the category data to avoid the query
-            ->addSelect('r')
-            ->andWhere('e.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
-
     // /**
     //  * @return Entree[] Returns an array of Entree objects
     //  */

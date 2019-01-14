@@ -27,7 +27,7 @@ class IndexController extends AbstractController
 
         $restaurants = $repository->findBy([]);
 
-        # creation du formulaire RestaurantFormType
+        # creation du formulaire FormulaireFormType
         $form = $this->createForm(FormulaireFormType::class)
             ->handleRequest($request);
 
@@ -41,30 +41,40 @@ class IndexController extends AbstractController
      * Page permettant d'afficher les restaurants
      * @Route("/listerestaurants", name="index_restaurant")
      */
-    public function listerestaurants()
+    public function listerestaurants(Request $request)
     {
         $repository = $this->getDoctrine()
             ->getRepository(Restaurant::class);
 
         $restaurants = $repository->findBy([]);
 
+        # creation du formulaire FormulaireFormType
+        $form = $this->createForm(FormulaireFormType::class)
+            ->handleRequest($request);
+
         return $this->render('front/ListeRestaurants.html.twig', [
-            'restaurants' => $restaurants
+            'restaurants' => $restaurants,
+            'form' => $form->createView()
         ]);
     }
     /**
      * Page permettant d'afficher les menus d'un restaurant
      * @Route("/menurestaurants", name="index_menu")
      */
-    public function menurestaurants()
+    public function menurestaurants(Request $request)
     {
         $repository = $this->getDoctrine()
             ->getRepository(Restaurant::class);
 
         $restaurants = $repository->findBy([]);
 
+        # creation du formulaire FormulaireFormType
+        $form = $this->createForm(FormulaireFormType::class)
+            ->handleRequest($request);
+
         return $this->render('front/menuRestaurants.html.twig', [
-            'restaurants' => $restaurants
+            'restaurants' => $restaurants,
+            'form' => $form->createView()
         ]);
     }
 

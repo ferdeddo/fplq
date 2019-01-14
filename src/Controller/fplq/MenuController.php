@@ -17,6 +17,7 @@ use App\Entity\Restaurant;
 use App\Form\BoissonFormType;
 use App\Form\DessertFormType;
 use App\Form\EntreeFormType;
+use App\Form\FormulaireFormType;
 use App\Form\MenuFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -30,11 +31,11 @@ class MenuController extends AbstractController
     use HelperTrait;
 
     /**
-     * @Route("/carte_restaurant/{id<\d+>}", name="carte_restaurant")
+     * @Route("/carte_restaurant/{restaurant}", name="carte_restaurant")
      */
 
 
-    public function carte(Request $request, $restaurant)
+    public function carte(Request $request, Restaurant $restaurant)
     {
         # création d'une entrée, un menu, un dessert ou une boisson
         $entree = new Entree();
@@ -43,9 +44,11 @@ class MenuController extends AbstractController
         $boisson = new Boisson();
 
         # Récupération de l'Id du Restaurant
-        # $restaurant = $this->getDoctrine()
-        #    ->getRepository(Restaurant::class)
-        #    ->find($id);
+        $entree->setRestaurant($restaurant);
+
+        # creation du formulaire FormulaireFormType
+        $form = $this->createForm(FormulaireFormType::class)
+            ->handleRequest($request);
 
         # création du formulaire EntreeFormType
         $form_entree = $this->createForm(EntreeFormType::class, $entree)
@@ -202,6 +205,7 @@ class MenuController extends AbstractController
         }
 
         return $this->render('restaurant/carte.html.twig', [
+            'form' => $form->createView(),
             'form_entree' => $form_entree->createView(),
             'form_menu' => $form_menu->createView(),
             'form_dessert' => $form_dessert->createView(),
