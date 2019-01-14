@@ -39,7 +39,7 @@ class IndexController extends AbstractController
 
     /**
      * Page permettant d'afficher les restaurants
-     * @Route("/listerestaurants", name="index_restaurant")
+     * @Route("membre/listerestaurants", name="index_restaurant")
      */
     public function listerestaurants(Request $request)
     {
