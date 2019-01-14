@@ -45,6 +45,9 @@ class MenuController extends AbstractController
 
         # Récupération de l'Id du Restaurant
         $entree->setRestaurant($restaurant);
+        $menu->setRestaurant($restaurant);
+        $dessert->setRestaurant($restaurant);
+        $boisson->setRestaurant($restaurant);
 
         # creation du formulaire FormulaireFormType
         $form = $this->createForm(FormulaireFormType::class)
@@ -106,26 +109,29 @@ class MenuController extends AbstractController
 
             if ($form_menu->isSubmitted() && $form_menu->isValid()) {
 
-                # 1. Traitement de l'upload de l'image
-
-                // $photo stores the uploaded file
-                /** @var UploadedFile $photo_menu */
                 $photo_menu = $menu->getPhoto();
+                if(null !== $photo_menu) {
+                    # 1. Traitement de l'upload de l'image
 
-                $fileName_menu = $this->slugify($menu->getNom()). '.' .$photo_menu->guessExtension();
+                    // $photo stores the uploaded file
+                    /** @var UploadedFile $photo_menu */
+                    $photo_menu = $menu->getPhoto();
 
-                // Move the file to the directory where images are stored
-                try {
-                    $photo_menu->move(
-                        $this->getParameter('menus_assets_dir'),
-                        $fileName_menu
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+                    $fileName_menu = $this->slugify($menu->getNom()) . '.' . $photo_menu->guessExtension();
+
+                    // Move the file to the directory where images are stored
+                    try {
+                        $photo_menu->move(
+                            $this->getParameter('menus_assets_dir'),
+                            $fileName_menu
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+
+                    # Mise à jour de l'image
+                    $menu->setPhoto($fileName_menu);
                 }
-
-                # Mise à jour de l'image
-                $menu->setPhoto($fileName_menu);
 
                 # Sauvegarde en BDD
                 $em = $this->getDoctrine()->getManager();
@@ -140,26 +146,29 @@ class MenuController extends AbstractController
 
         if ($form_dessert->isSubmitted() && $form_dessert->isValid()) {
 
-            # 1. Traitement de l'upload de l'image
-
-            // $photo stores the uploaded file
-            /** @var UploadedFile $photo_dessert */
             $photo_dessert = $dessert->getPhoto();
+            if(null !== $photo_dessert) {
+                # 1. Traitement de l'upload de l'image
 
-            $fileName_dessert = $this->slugify($dessert->getNom()) . '.' . $photo_dessert->guessExtension();
+                // $photo stores the uploaded file
+                /** @var UploadedFile $photo_dessert */
+                $photo_dessert = $dessert->getPhoto();
 
-            // Move the file to the directory where images are stored
-            try {
-                $photo_dessert->move(
-                    $this->getParameter('menus_assets_dir'),
-                    $fileName_dessert
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                $fileName_dessert = $this->slugify($dessert->getNom()) . '.' . $photo_dessert->guessExtension();
+
+                // Move the file to the directory where images are stored
+                try {
+                    $photo_dessert->move(
+                        $this->getParameter('menus_assets_dir'),
+                        $fileName_dessert
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                # Mise à jour de l'image
+                $dessert->setPhoto($fileName_dessert);
             }
-
-            # Mise à jour de l'image
-            $dessert->setPhoto($fileName_dessert);
 
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();
@@ -173,26 +182,29 @@ class MenuController extends AbstractController
 
         if ($form_boisson->isSubmitted() && $form_boisson->isValid()) {
 
-            # 1. Traitement de l'upload de l'image
+            $photo_boisson = $entree->getPhoto();
+            if(null !== $photo_boisson) {
+                # 1. Traitement de l'upload de l'image
 
-            // $photo stores the uploaded file
-            /** @var UploadedFile $photo_boisson */
-            $photo_boisson = $boisson->getPhoto();
+                // $photo stores the uploaded file
+                /** @var UploadedFile $photo_boisson */
+                $photo_boisson = $boisson->getPhoto();
 
-            $fileName_boisson = $this->slugify($boisson->getNom()) . '.' . $photo_boisson->guessExtension();
+                $fileName_boisson = $this->slugify($boisson->getNom()) . '.' . $photo_boisson->guessExtension();
 
-            // Move the file to the directory where images are stored
-            try {
-                $photo_boisson->move(
-                    $this->getParameter('menus_assets_dir'),
-                    $fileName_boisson
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                // Move the file to the directory where images are stored
+                try {
+                    $photo_boisson->move(
+                        $this->getParameter('menus_assets_dir'),
+                        $fileName_boisson
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                # Mise à jour de l'image
+                $boisson->setPhoto($fileName_boisson);
             }
-
-            # Mise à jour de l'image
-            $boisson->setPhoto($fileName_boisson);
 
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();
