@@ -10,6 +10,7 @@ namespace App\Form;
 
 
 use App\Entity\Entree;
+use App\Entity\Restaurant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -54,7 +55,8 @@ class EntreeFormType extends AbstractType
 
             ->add('submit', SubmitType::class,
                 [
-                    'label'=>"Ajouter mon entrée"
+                    'label'=>"Ajouter mon entrée",
+                    'attr' => array ( 'class' => 'submit' )
                 ]);
     }
     public function configureOptions(OptionsResolver $resolver)

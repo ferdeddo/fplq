@@ -14,13 +14,17 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <div>
-            <div>
-                <h3 class="text-center"> Carte Restaurant </h3>
-                {{ form(form_entree, {attr:{novalidate: 'novalidate' }}) }}
-                {{ form(form_menu, {attr:{novalidate: 'novalidate' }}) }}
-                {{ form(form_dessert, {attr:{novalidate: 'novalidate' }}) }}
-                {{ form(form_boisson, {attr:{novalidate: 'novalidate' }}) }}
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h2 class="text-center text-warning mt-2"> Carte Restaurant </h2>
+                    <h4 class="text-justify text-warning mt-2"> Ajout Entrée </h4>
+                        {{ form(form_entree, {attr:{novalidate: 'novalidate' }}) }}
+                    <h4 class="text-justify text-warning mt-2"> Ajout Menu </h4>
+                        {{ form(form_menu, {attr:{novalidate: 'novalidate' }}) }}
+                    <h4 class="text-justify text-warning mt-2"> Ajout Dessert </h4>
+                        {{ form(form_dessert, {attr:{novalidate: 'novalidate' }}) }}
+                    <h4 class="text-justify text-warning mt-2"> Ajout Boisson </h4>
+                        {{ form(form_boisson, {attr:{novalidate: 'novalidate' }}) }}
             </div>
         </div>
     </div>

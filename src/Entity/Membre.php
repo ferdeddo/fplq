@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
@@ -85,12 +86,12 @@ class Membre implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
      */
 
-    private $livraison;
+    private $livraisons;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
      */
-    private $commande;
+    private $commandes;
 
     /**
      * @ORM\Column(type="array")
@@ -99,8 +100,8 @@ class Membre implements UserInterface
 
     public function __construct()
     {
-        $this->livraison = new ArrayCollection();
-        $this->commande = new ArrayCollection();
+        $this->livraisons = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,15 +181,18 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getLivraison()
+    /**
+     * @return Collection|Livraison[]
+     */
+    public function getLivraisons(): Collection
     {
-        return $this->livraison;
+        return $this->livraisons;
     }
 
     public function addLivraison(Livraison $livraison): self
     {
-        if (!$this->livraison->contains($livraison)) {
-            $this->livraison[] = $livraison;
+        if (!$this->livraisons->contains($livraison)) {
+            $this->livraisons[] = $livraison;
             $livraison->setMembre($this);
         }
 
@@ -197,8 +201,8 @@ class Membre implements UserInterface
 
     public function removeLivraison(Livraison $livraison): self
     {
-        if ($this->livraison->contains($livraison)) {
-            $this->livraison->removeElement($livraison);
+        if ($this->livraisons->contains($livraison)) {
+            $this->livraisons->removeElement($livraison);
             // set the owning side to null (unless already changed)
             if ($livraison->getMembre() === $this) {
                 $livraison->setMembre(null);
@@ -208,16 +212,18 @@ class Membre implements UserInterface
         return $this;
     }
 
-
-    public function getCommande()
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes()
     {
-        return $this->commande;
+        return $this->commandes;
     }
 
     public function addCommande(Commande $commande): self
     {
-        if (!$this->commande->contains($commande)) {
-            $this->commande[] = $commande;
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
             $commande->setMembre($this);
         }
 
@@ -226,8 +232,8 @@ class Membre implements UserInterface
 
     public function removeCommande(Commande $commande): self
     {
-        if ($this->commande->contains($commande)) {
-            $this->commande->removeElement($commande);
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
             // set the owning side to null (unless already changed)
             if ($commande->getMembre() === $this) {
                 $commande->setMembre(null);

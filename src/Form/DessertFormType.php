@@ -55,7 +55,8 @@ class DessertFormType extends AbstractType
 
             ->add('submit', SubmitType::class,
                 [
-                    'label'=>"Ajouter mon dessert"
+                    'label'=>"Ajouter mon dessert",
+                    'attr' => array ( 'class' => 'submit' )
                 ]);
     }
     public function configureOptions(OptionsResolver $resolver)

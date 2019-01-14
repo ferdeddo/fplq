@@ -148,11 +148,17 @@ class Entree
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRestaurant(): ?Restaurant
     {
         return $this->restaurant;
     }
 
+    /**
+     * @return Entree
+     */
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
