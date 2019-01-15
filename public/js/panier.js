@@ -214,6 +214,52 @@ $('.show-cart').on("change", ".item-count", function(event) {
     var count = Number($(this).val());
     shoppingCart.setCountForItem(name, count);
     displayCart();
+
+
+    //-------------- PAYPAL ------------
+
+
 });
+paypal.Button.render({
+
+
+    // Configure environment
+    env: 'sandbox',
+    client: {
+        sandbox: 'AWCTbrT9vOb_4_QQ1-mP0in98lFJ-GYXbqgjTQjdac2L80MEWnNJxIsKiwG5Tg8_1W3qR345EGRz3UAQ',
+        production: 'ASqv13M1H4H2dff9lfIUKyyq0By1MEUfaWuxox0yIg_ewVPY4k0k55lGIkljxdlLAT4fzvrZugRH6Km1'
+    },
+
+    // Customize button (optional)
+    locale: 'fr_FR',
+    style: {
+        size: 'large',
+        color: 'blue',
+        shape: 'rect',
+        label: 'pay',
+    },
+
+    // Enable Pay Now checkout flow (optional)
+    commit: true,
+
+    // Set up a payment
+    payment: function(data, actions) {
+        return actions.payment.create({
+            transactions: [{
+                amount: {
+                    total:   shoppingCart.totalCart().toFixed(2),
+                    currency: 'EUR'
+                }
+            }]
+        });
+    },
+    // Execute the payment
+    onAuthorize: function(data, actions) {
+        return actions.payment.execute().then(function() {
+            // Show a confirmation message to the buyer
+            window.alert('Thank you for your purchase!');
+        });
+    }
+}, '#paypal');
 
 displayCart();
