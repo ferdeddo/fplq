@@ -1,12 +1,12 @@
 // ************************************************
 // Shopping Cart API
 // ************************************************
-
+var cart = [];
 var shoppingCart = (function() {
     // =============================
     // Private methods and propeties
     // =============================
-    cart = [];
+
 
     // Constructor
     function Item(name, price, count) {
@@ -255,11 +255,17 @@ paypal.Button.render({
     },
     // Execute the payment
     onAuthorize: function(data, actions) {
+
         return actions.payment.execute().then(function() {
             // Show a confirmation message to the buyer
-            window.alert('Thank you for your purchase!');
-        });
+           window.alert('Merci pour votre achat!');
+            shoppingCart.clearCart();
+
+            });
+
     }
+
 }, '#paypal');
+
 
 displayCart();
