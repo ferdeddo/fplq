@@ -9,10 +9,12 @@
 namespace App\Controller\fplq;
 
 
+use App\Entity\Boisson;
+use App\Entity\Dessert;
+use App\Entity\Entree;
+use App\Entity\Menu;
 use App\Entity\Restaurant;
-use App\Entity\Type;
-use App\Form\FormulaireFormType;
-use App\Form\RestaurantFormType;
+use App\Form\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,8 +29,8 @@ class IndexController extends AbstractController
 
         $restaurants = $repository->findBy([]);
 
-        # creation du formulaire FormulaireFormType
-        $form = $this->createForm(FormulaireFormType::class)
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         return $this->render('front/index.html.twig', [
@@ -48,8 +50,8 @@ class IndexController extends AbstractController
 
         $restaurants = $repository->findBy([]);
 
-        # creation du formulaire FormulaireFormType
-        $form = $this->createForm(FormulaireFormType::class)
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         return $this->render('front/ListeRestaurants.html.twig', [
@@ -63,17 +65,37 @@ class IndexController extends AbstractController
      */
     public function menurestaurants(Request $request)
     {
-        $repository = $this->getDoctrine()
+        $repository_restaurants = $this->getDoctrine()
             ->getRepository(Restaurant::class);
 
-        $restaurants = $repository->findBy([]);
+        $repository_entrees = $this->getDoctrine()
+            ->getRepository(Entree::class);
 
-        # creation du formulaire FormulaireFormType
-        $form = $this->createForm(FormulaireFormType::class)
+        $repository_menus = $this->getDoctrine()
+            ->getRepository(Menu::class);
+
+        $repository_desserts = $this->getDoctrine()
+            ->getRepository(Dessert::class);
+
+        $repository_boissons = $this->getDoctrine()
+            ->getRepository(Boisson::class);
+
+        $restaurants = $repository_restaurants->findBy([]);
+        $entrees = $repository_entrees->findBy([]);
+        $menus = $repository_menus->findBy([]);
+        $desserts = $repository_desserts->findBy([]);
+        $boissons = $repository_boissons->findBy([]);
+
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         return $this->render('front/menuRestaurants.html.twig', [
             'restaurants' => $restaurants,
+            'entrees' => $entrees,
+            'menus' => $menus,
+            'desserts' => $desserts,
+            'boissons' => $boissons,
             'form' => $form->createView()
         ]);
     }

@@ -11,7 +11,6 @@ namespace App\Controller\fplq;
 use App\Controller\HelperTrait;
 use App\Entity\Restaurant;
 use App\Form\RestaurantFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

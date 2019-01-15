@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Restaurant
@@ -66,16 +66,16 @@ class Restaurant
     private $horaires;
 
     /**
-     * @var int
+     * @var double
      *
-     * @ORM\Column(name="commande_min", type="integer", nullable=false)
+     * @ORM\Column(name="commande_min", type="float", nullable=false)
      */
     private $commandeMin;
 
     /**
-     * @var int
+     * @var double
      *
-     * @ORM\Column(name="prix_livraison", type="integer", nullable=false)
+     * @ORM\Column(name="prix_livraison", type="float", nullable=false)
      */
     private $prixLivraison;
 
@@ -122,7 +122,7 @@ class Restaurant
     private $desserts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Dessert", mappedBy="restaurant")
+     * @ORM\OneToMany(targetEntity="App\Entity\Boisson", mappedBy="restaurant")
      */
     private $boissons;
 

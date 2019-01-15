@@ -15,9 +15,9 @@ use App\Entity\Entree;
 use App\Entity\Menu;
 use App\Entity\Restaurant;
 use App\Form\BoissonFormType;
+use App\Form\ContactFormType;
 use App\Form\DessertFormType;
 use App\Form\EntreeFormType;
-use App\Form\FormulaireFormType;
 use App\Form\MenuFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -49,8 +49,8 @@ class MenuController extends AbstractController
         $dessert->setRestaurant($restaurant);
         $boisson->setRestaurant($restaurant);
 
-        # creation du formulaire FormulaireFormType
-        $form = $this->createForm(FormulaireFormType::class)
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         # création du formulaire EntreeFormType

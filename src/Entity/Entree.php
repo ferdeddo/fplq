@@ -33,21 +33,21 @@ class Entree
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=0, nullable=false)
+     * @ORM\Column(name="description", type="text", length=0, nullable=true)
      */
     private $description;
 
     /**
-     * @var int
+     * @var double
      *
-     * @ORM\Column(name="prix", type="integer", nullable=false)
+     * @ORM\Column(name="prix", type="float", nullable=false)
      */
     private $prix;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=180, nullable=false)
+     * @ORM\Column(name="photo", type="string", length=180, nullable=true)
      */
     private $photo;
 
