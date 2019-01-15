@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FormulaireController extends AbstractController
+class ContactController extends AbstractController
 
 {
     use HelperTrait;
@@ -26,8 +26,8 @@ class FormulaireController extends AbstractController
     public function formulaire(Request $request)
     {
 
-        # creation du formulaire RestaurantFormType
-        $form = $this->createForm(FormulaireFormType::class)
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         # Soumission du Formulaire
@@ -46,6 +46,6 @@ class FormulaireController extends AbstractController
         ]);
 
 
-        }
     }
+}
 

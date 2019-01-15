@@ -56,49 +56,20 @@
                                     </div>
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
-                                            <div class="row card-block d-none" >
-                                                {#cette div est caché car le premier élément à rajouté au panier bug#}
-                                                <div class="col-12" >
-                                                    <h4 class="card-title" >Soupe Miso</h4>
-                                                    <p class="card-text ">2.00 €</p>
-                                                    <a href="#" data-name="Soupe miso" data-price="2.00" class="add-to-cart btn btn-outline-success float-right"><i class=" fas fa-plus"></i></a>
-                                                </div>
-
-                                            </div><hr>
-                                            <div class="row card-block" >
-                                                <div class="col-8">
-                                                    <p >Salade de choux</p>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">2.50 €</p>
-                                                </div>
-                                                <div class="col-2">
-                                                    {#changer le contenu de data-name et data-price par le contenu de la bdd#}
-                                                    <button type="button" data-name="Salade_de_choux" data-price="2.50" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
+                                            {% for entree in restaurant.entrees %}
                                             <div class="row">
                                                 <div class="col-8">
-                                                    <p >Tartare saumon Avocat</p>
+                                                    <p >{{ entree.nom }}</p>
+                                                    <small>{{ entree.description }}</small>
                                                 </div>
                                                 <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">6,00 €</p>
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="button" data-name="Tartare_Saumon_Avocat" data-price="6.00" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >Tempura crevette x6</p>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">6,80 €</p>
+                                                    <p class="font-weight-bold">{{ entree.prix }} €</p>
                                                 </div>
                                                 <div class="col-2">
                                                     <button type="button" data-name="Tempura_Crevette_x6" data-price="6.80" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                 </div>
                                             </div><hr>
+                                            {% endfor %}
                                             {#<button type="button" class="btn btn-outline-success btn-lg btn-block"><i class="float-left mt-1 fas fa-plus"></i> Ajouter au pannier</button>#}
                                         </div>
                                     </div>
@@ -113,11 +84,11 @@
                                     </div>
                                     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
+                                            {% for menu in restaurant.menus %}
                                             <div class="row">
                                                 <div class="col-8">
-                                                    <p >Menu Sushi </p>
-                                                    <small>8 sushi (4 saumon, 4 thon), 1 soupe, 1 salade</small>
-
+                                                    <p >{{ menu.nom }}</p>
+                                                    <small>{{ menu.description }}</small>
                                                     <div class="mt-2">
                                                         <select class="custom-select" id="inputGroupSelect01">
                                                             <option selected>Boisson...</option>
@@ -128,58 +99,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">12,00 €</p>
+                                                    <p class="font-weight-bold">{{ menu.prix }} €</p>
                                                 </div>
                                                 <div class="col-2">
 
                                                     <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
                                                 </div>
                                             </div><hr>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >Menu Mixte </p>
-                                                    <small>4 nems au poulet, 5 brochettes ou 3 brochettes</small>
-
-                                                    <div class="mt-2">
-                                                        <select class="custom-select" id="inputGroupSelect01">
-                                                            <option selected>Boisson...</option>
-                                                            <option value="1">Coca-cola</option>
-                                                            <option value="2">Fanta</option>
-                                                            <option value="3">Tropico</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">13,50 €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >Menu Brochettes </p>
-                                                    <small>4 brochettes ( 2 saumon, 2 thon), 1 soupe, 1 salade, 1 riz</small>
-
-                                                    <div class="mt-2">
-                                                        <select class="custom-select" id="inputGroupSelect01">
-                                                            <option selected>Boisson...</option>
-                                                            <option value="1">Coca-cola</option>
-                                                            <option value="2">Fanta</option>
-                                                            <option value="3">Tropico</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">12,00 €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
-
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -193,31 +120,21 @@
                                     </div>
                                     <div id="collapseThree" class="collapse" role="tabpanel" data-target="#headingThree" data-parent="#accordion">
                                         <div class="card-body">
+                                            {% for dessert in restaurant.desserts %}
                                             <div class="row">
                                                 <div class="col-8">
-                                                    <p >Magnum Batonnet Amande 120ml </p>
+                                                    <p >{{ dessert.nom }}</p>
+                                                    <small>{{ dessert.description }}</small>
                                                 </div>
                                                 <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">3.50 €</p>
+                                                    <p class="font-weight-bold">{{ dessert.prix }} €</p>
                                                 </div>
                                                 <div class="col-2">
 
                                                     <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
                                                 </div>
                                             </div><hr>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >Tiramisu Caramel</p>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">2.50 €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
-
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -231,32 +148,21 @@
                                     </div>
                                     <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
                                         <div class="card-body">
+                                            {% for boisson in restaurant.boissons %}
                                             <div class="row">
                                                 <div class="col-8">
-                                                    <p >Coca-Cola</p>
-                                                    <small>33 cl</small>
+                                                    <p >{{ boisson.nom }}</p>
+                                                    <small>{{ boisson.description }}</small>
                                                 </div>
                                                 <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">1.50 €</p>
+                                                    <p class="font-weight-bold">{{ boisson.prix }} €</p>
                                                 </div>
                                                 <div class="col-2">
 
                                                     <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
                                                 </div>
                                             </div><hr>
-
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >Fanta</p>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">1.50 €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" class="btn btn-outline-success float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>

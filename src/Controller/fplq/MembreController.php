@@ -29,7 +29,7 @@ class MembreController extends AbstractController
     {
         # création d'un membre
         $membre = new Membre();
-        # $membre->setRoles(['ROLE_MEMBRE']);
+        $membre->setRoles(['ROLE_MEMBRE']);
 
         # creation du formulaire MembreFormType
         $form = $this->createForm(MembreFormType::class, $membre)
