@@ -13,7 +13,14 @@
             <div class="col-4">
 
                 {#si restaurant d'or rajouter la couronne#}
-                <h1>{{restaurant.nom}}<i class="text-warning fas fa-crown"></i></h1>
+                <h1>{{restaurant.nom}}<i class="text-warning fas fa-crown"></i>
+                    {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('carte_restaurant', {
+                                'restaurant': restaurant.id
+                            }) }}"><br>
+                                <small class="h6">Compléter la carte</small></a>
+                    {% endif %}
+                </h1>
                 {#Rajouter une condition Si le restaurant est fermé, remplacer le
                 par "fermé - ouvre à ..:.." et le point devient rouge#}
                 <p><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</p>
