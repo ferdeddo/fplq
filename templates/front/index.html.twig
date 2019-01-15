@@ -10,8 +10,12 @@
 
 
     <!--colleft-->
-    <div class="container">
-
+    <div class="container"><br>
+        {% for message in app.flashes('notice_connexion') %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
         <section class="bg-light text-center container  border border-success py-4 mt-4 mb-4">
             <h3 class="text-success font-weight-bold">Cliquer c'est manger</h3>
             <p>Faites-vous livrer les meilleurs restos près de chez vous avec Fais Pas La Queue.</p>
@@ -33,11 +37,6 @@
             <style type="text/css" id="slider-css"></style>
             <div class="spe-cor">
                 <div class="container">
-                    {% for message in app.flashes('notice_inscription') %}
-                        <div class="alert alert-info">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
                     <h2 class="text-warning">Restaurants d'Or <i class="fas fa-crown"></i></h2>
                     <div class="row">
 
@@ -68,7 +67,11 @@
                                                         <span class="fa fa-star"></span>
                                                     </div>
                                                     <div class="text-center">
-                                                        <a href="#" class="btn btn-success">Je mange</a>
+                                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                                        <a href="{{ path('index_menu', {
+                                                            'id': restaurant.id
+                                                        }) }}" class="btn btn-success">Je mange</a>
+                                                        {% endif %}
                                                     </div>
 
                                                 </div>

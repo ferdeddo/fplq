@@ -34,7 +34,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
 
         # Notification
-        $this->addFlash('notice_inscription',
+        $this->addFlash('notice_connexion',
             'Bonjour ! vous êtes connecté.');
 
         # Dernier email saisi par l'utilisateur.
