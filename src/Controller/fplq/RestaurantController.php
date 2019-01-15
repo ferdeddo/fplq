@@ -39,8 +39,6 @@ class RestaurantController extends AbstractController
         # Soumission du Formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
-            # 1. Traitement de l'upload de l'image
-
             // $photo stores the uploaded file
             /** @var UploadedFile $photo */
             $photo = $restaurant->getPhoto();
