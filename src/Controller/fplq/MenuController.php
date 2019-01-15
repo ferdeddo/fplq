@@ -43,7 +43,7 @@ class MenuController extends AbstractController
         $dessert = new Dessert();
         $boisson = new Boisson();
 
-        # Récupération de l'Id du Restaurant
+        # Récupération de l'Id du Restaurant présent dans l'URL
         $entree->setRestaurant($restaurant);
         $menu->setRestaurant($restaurant);
         $dessert->setRestaurant($restaurant);
@@ -182,7 +182,7 @@ class MenuController extends AbstractController
 
         if ($form_boisson->isSubmitted() && $form_boisson->isValid()) {
 
-            $photo_boisson = $entree->getPhoto();
+            $photo_boisson = $boisson->getPhoto();
             if(null !== $photo_boisson) {
                 # 1. Traitement de l'upload de l'image
 
