@@ -38,18 +38,21 @@
                       <div class="buttons">
                           {#Rajouter une condition Si le restaurant est fermé, remplacer le
                          bouton par un bouton "je pré-commande"#}
-                          <a class="button btn-success" href="{{ path('index_menu') }}">Voir le menu</a>
+                          <a class="button btn-success"
+                             href="{{ path('index_menu', {
+                                 'id': restaurant.id
+                             }) }}">Voir le menu</a>
 
                           {#Rajouter une condition Si le restaurant est fermé, remplacer le
                          par "fermé - ouvre à ..:.." et le point devient rouge#}
-                          <span  class="ml-5"><i class="fas fa-circle text-success"></i>Ouverture {{restaurant.horaires}}</span>
+                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</span>
                       </div>
                   </div>
               </div>
               <div class="text-warning my-auto mr-3">
                   <ul>
-                      <li class="list-unstyled "><i class="fas fa-clock"></i>{{restaurant.horaires}}</li>
-                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i>Comm. min. {{restaurant.commandeMin}} €</li>
+                      <li class="list-unstyled "><i class="fas fa-clock"></i> {{restaurant.horaires}}</li>
+                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i> Comm. min. {{restaurant.commandeMin}} €</li>
                       <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i>
                           {% if restaurant.prixLivraison == 0 %}
                             Livraison Gratuite

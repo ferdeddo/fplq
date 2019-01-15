@@ -1,11 +1,10 @@
 {% extends "layout.html.twig" %}
 {% set active='menu' %}
 {% block page_title %}
-    menu restaurants
+    Menu {{restaurant.nom}}
 {% endblock %}
 
 {% block content %}
-    {% for restaurant in restaurants %}
     <section class="container">
         <div class="row">
             <div class="col-3">
@@ -17,15 +16,15 @@
                 <h1>{{restaurant.nom}}<i class="text-warning fas fa-crown"></i></h1>
                 {#Rajouter une condition Si le restaurant est fermé, remplacer le
                 par "fermé - ouvre à ..:.." et le point devient rouge#}
-                <p><i class="fas fa-circle text-success"></i>Ouverture {{restaurant.horaires}}</p>
+                <p><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</p>
 
 
                 <p>Type: {{restaurant.type.nom}}</p>
             </div>
             <div class="col-5">
                 <ul class="mt-5">
-                    <li class="list-unstyled "><i class="fas fa-clock"></i>45 à 60 min</li>
-                    <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i>Comm. min. {{restaurant.commandeMin}} €</li>
+                    <li class="list-unstyled "><i class="fas fa-clock"></i> 45 à 60 min</li>
+                    <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i> Comm. min. {{restaurant.commandeMin}} €</li>
                     <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i>
                         {% if restaurant.prixLivraison == 0 %}
                             Livraison Gratuite
@@ -57,18 +56,36 @@
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
                                             {% for entree in restaurant.entrees %}
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >{{ entree.nom }}</p>
-                                                    <small>{{ entree.description }}</small>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">{{ entree.prix }} €</p>
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
+                                                {% if entree.photo is not empty %}
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ asset('images/product/'~entree.photo) }}" class="img-thumbnail">
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <p >{{ entree.nom }}</p>
+                                                            <small>{{ entree.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ entree.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% else %}
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <p >{{ entree.nom }}</p>
+                                                            <small>{{ entree.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ entree.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% endif %}
                                             {% endfor %}
                                             {#<button type="button" class="btn btn-outline-success btn-lg btn-block"><i class="float-left mt-1 fas fa-plus"></i> Ajouter au pannier</button>#}
                                         </div>
@@ -85,27 +102,36 @@
                                     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
                                             {% for menu in restaurant.menus %}
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >{{ menu.nom }}</p>
-                                                    <small>{{ menu.description }}</small>
-                                                    <div class="mt-2">
-                                                        <select class="custom-select" id="inputGroupSelect01">
-                                                            <option selected>Boisson...</option>
-                                                            <option value="1">Coca-cola</option>
-                                                            <option value="2">Fanta</option>
-                                                            <option value="3">Tropico</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">{{ menu.prix }} €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                            </div>
-                                            </div><hr>
+                                                {% if menu.photo is not empty %}
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ asset('images/product/'~menu.photo) }}" class="img-thumbnail">
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <p >{{ menu.nom }}</p>
+                                                            <small>{{ menu.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ menu.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% else %}
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <p >{{ menu.nom }}</p>
+                                                            <small>{{ menu.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ menu.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -121,19 +147,36 @@
                                     <div id="collapseThree" class="collapse" role="tabpanel" data-target="#headingThree" data-parent="#accordion">
                                         <div class="card-body">
                                             {% for dessert in restaurant.desserts %}
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >{{ dessert.nom }}</p>
-                                                    <small>{{ dessert.description }}</small>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">{{ dessert.prix }} €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
+                                                {% if dessert.photo is not empty %}
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ asset('images/product/'~dessert.photo) }}" class="img-thumbnail">
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <p >{{ dessert.nom }}</p>
+                                                            <small>{{ dessert.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ dessert.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% else %}
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <p >{{ dessert.nom }}</p>
+                                                            <small>{{ dessert.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ dessert.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -149,19 +192,36 @@
                                     <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
                                         <div class="card-body">
                                             {% for boisson in restaurant.boissons %}
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <p >{{ boisson.nom }}</p>
-                                                    <small>{{ boisson.description }}</small>
-                                                </div>
-                                                <div class="col-2 float-right">
-                                                    <p class="font-weight-bold">{{ boisson.prix }} €</p>
-                                                </div>
-                                                <div class="col-2">
-
-                                                    <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
-                                                </div>
-                                            </div><hr>
+                                                {% if boisson.photo is not empty %}
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ asset('images/product/'~boisson.photo) }}" class="img-thumbnail">
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <p >{{ boisson.nom }}</p>
+                                                            <small>{{ boisson.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ boisson.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% else %}
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <p >{{ boisson.nom }}</p>
+                                                            <small>{{ boisson.description }}</small>
+                                                        </div>
+                                                        <div class="col-2 float-right">
+                                                            <p class="font-weight-bold">{{ boisson.prix|round(1,'floor') }} €</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                        </div>
+                                                    </div><hr>
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -172,8 +232,6 @@
             <!-- /#page-content-wrapper -->
         </div>
     </section>
-    {% endfor %}
-
 {% endblock %}
 
 {% block final_javascripts %}

@@ -59,15 +59,16 @@ class IndexController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
     /**
      * Page permettant d'afficher les menus d'un restaurant
-     * @Route("/menurestaurants", name="index_menu")
+     * @Route("/menu_restaurant/{id<\d+>}", name="index_menu")
+     * @param Request $request
+     * @param Restaurant $restaurant
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function menurestaurants(Request $request)
+    public function menurestaurants(Request $request, Restaurant $restaurant)
     {
-        $repository_restaurants = $this->getDoctrine()
-            ->getRepository(Restaurant::class);
-
         $repository_entrees = $this->getDoctrine()
             ->getRepository(Entree::class);
 
@@ -80,7 +81,6 @@ class IndexController extends AbstractController
         $repository_boissons = $this->getDoctrine()
             ->getRepository(Boisson::class);
 
-        $restaurants = $repository_restaurants->findBy([]);
         $entrees = $repository_entrees->findBy([]);
         $menus = $repository_menus->findBy([]);
         $desserts = $repository_desserts->findBy([]);
@@ -90,8 +90,8 @@ class IndexController extends AbstractController
         $form = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
-        return $this->render('front/menuRestaurants.html.twig', [
-            'restaurants' => $restaurants,
+        return $this->render('front/MenuRestaurants.html.twig', [
+            'restaurant' => $restaurant,
             'entrees' => $entrees,
             'menus' => $menus,
             'desserts' => $desserts,
@@ -101,7 +101,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * Page permettant d'afficher les menus d'un restaurant
+     * Page permettant d'afficher le profil de l'utilisateur connecté
      * @Route("/interface_user", name="index_interface_user")
      */
     public function InterfaceUser()
