@@ -1,0 +1,36 @@
+<!-- Carousel -->
+{#loop.index0 	permet  l'itération actuel de la boucle (l'index commence à 0)#}
+<div data-slide-to="{{ loop.index0 }}"  class="carousel-item {% if loop.index0 == 0 %}active{% endif %}" >
+
+    <div class=" p-0 col-lg-4 col-md-4 col-sm-4 col-4">
+        <div class="card" >
+            <img class="card-img-top img-fluid" src="{{ asset('images/product/'~restaurant.photo) }}" alt="First slide">
+            <div class="card-body">
+                <h5 class="card-title">{{restaurant.nom}}</h5>
+                <address class="h6">
+                    <small>
+                        {{restaurant.adresse}}<br>
+                        {{restaurant.codePostal}} {{restaurant.ville}} <br>
+                    </small>
+                </address>
+                <p class="card-text">{{restaurant.description}}</p>
+                {#STAR RATING#}
+                <div class="container mb-2 text-center">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div class="text-center">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('index_menu', {
+                            'id': restaurant.id
+                        }) }}" class="btn btn-success">Je mange</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
