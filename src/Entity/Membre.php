@@ -76,7 +76,9 @@ class Membre implements UserInterface
     private $mdp;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=10, nullable=false)
      */
     private $telephone;
 
@@ -166,24 +168,24 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setPhoto($photo): self
     {
         $this->photo = $photo;
 

@@ -12,6 +12,7 @@ namespace App\Form;
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -55,6 +56,13 @@ class MembreFormType extends AbstractType
                 'label' => "Téléphone",
                 'attr' => [
                     'placeholder' => "Entrez votre téléphone"
+                ]
+            ])
+
+            ->add('photo', FileType::class, [
+                'label'=>"Photo",
+                'attr'=> [
+                    'class' => "dropify"
                 ]
             ])
 

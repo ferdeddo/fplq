@@ -7,6 +7,10 @@
     background-color: rgba(255, 255, 255, 0.21);
 }
 
+a:hover{
+    color:#FFC107;
+}
+
 /*SEARCH BAR*/
 #custom-search-input{
     padding: 3px;
@@ -192,6 +196,18 @@ LISTE RESTAURANT Product Card Styles
     min-height: 650px;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: #ffc107;
+}
+
+.user-interface a{
+    color: #ffc107;
+}
+
+.user-interface a:hover{
+    color: #ffc107;
+}
+
 /*-------------- INSCRIPTION / CONNEXION ----------------*/
 
 /*inscription*/
@@ -213,8 +229,4 @@ LISTE RESTAURANT Product Card Styles
     font-size: 1.25rem;
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
     margin: 2rem 25% ;
-}
-
-footer{
-
 }
