@@ -63,66 +63,66 @@ h2{
 /*----------------------
 LISTE RESTAURANT Product Card Styles
 ----------------------*/
-.container .product {
-    width: 100%;
-    height: 250px;
-    display: flex;
-    margin: 1em 0;
+.liste-restaurants {
     border-radius: 5px;
-    overflow: hidden;
-    cursor: pointer;
     box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.15);
-    transition: all .1s ease-in-out;
 }
-.container .product:hover {
-    box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.11);
-}
-.container .product .img-container {
-    flex: 2;
-}
-.container .product .img-container img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-.container .product .product-info {
-    background: #fff;
-    flex: 3;
-}
-.container .product .product-info .product-content {
-    padding: .2em 0 .2em 1em;
-}
-.container .product .product-info .product-content h1 {
-    font-size: 1.5em;
-}
-.container .product .product-info .product-content p {
-    color: #636363;
-    font-size: .8em;
-
-}
-.container .product .product-info .product-content address {
-    color: #636363;
-    font-size: 1.1em;
-    margin-bottom: 2em;
-
-}
-.container .product .product-info .product-content .buttons {
-    padding-top: .4em;
-}
-.container .product .product-info .product-content .buttons .button {
-    text-decoration: none;
+.liste-restaurants h3{
+    font-size: 20px;
     font-weight: bold;
-    padding: .6em 1.5em;
-    border-radius: 2.3px;
-    transition: all .1s ease-in-out;
-    margin-left: 1em;
 }
 
-.container .product .bordure_verticale {
-    height: 100%;
-    border-right: 1px solid lightgray;
+.liste-restaurants address {
+    font-size: smaller;
 }
 
+.liste-restaurants button  {
+    font-size: smaller;
+}
+.liste-restaurants .open-close{
+    font-size: 12px;
+}
+.liste-restaurants ul {
+    padding: 0px;
+}
+.liste-restaurants ul li {
+    font-size: smaller;
+}
+
+ /*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .liste-restaurants h3{
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+    .liste-restaurants button {
+        font-size: smaller;
+    }
+    .liste-restaurants .bordure_verticale_liste {
+        height: 100%;
+        border-left: 1px solid lightgray;
+    }
+    .liste-restaurants ul li {
+        font-size: small;
+    }
+
+}
+
+ /*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .liste-restaurants button {
+        font-size: medium;
+    }
+
+    .liste-restaurants .open-close{
+        font-size: medium;
+    }
+
+    .liste-restaurants ul li {
+        font-size: medium;
+    }
+}
 
 /*---------- MENU RESTAURANTS ------------*/
 /* Toggle Styles */

@@ -3,69 +3,85 @@
 {% set active='restaurant' %}
 
 {% block page_title %}
-   Liste restaurants
+    Liste restaurants
 {% endblock %}
 
 {% block content %}
-  <section class="container">
-      <h1 class="text-center">"xx" Restaurants livrent à "nom de la ville"</h1>
-      <hr>
+    <section class="container ">
+        <h1 class="text-center">"xx" Restaurants livrent à "nom de la ville"</h1>
+        <hr>
 
-      <form class=" input-group container ">
-          <input class="form-control mr-sm-2" type="search" placeholder="Trouver un resto..." aria-label="Search">
-          <button class="input-group-append btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-      </form>
-      <div class="container">
+        <div class="input-group mb-3">
+            <input type="search" class="form-control" placeholder="Trouver un resto..." aria-label="Search" >
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="button"><i
+                            class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="container mt-4">
 
-          {% for restaurant in restaurants %}
-          <div class="product">
-              <div class="img-container">
-                  <img src="{{ asset('images/product/'~restaurant.photo) }}">
-              </div>
-              <div class="product-info bordure_verticale">
-                  <div class="product-content">
-                      {#si restaurant d'or rajouter la couronne#}
-                      <h1>{{restaurant.nom}}<i class=" text-warning fas fa-crown"></i></h1>
-                      <p>{{restaurant.type.nom}}</p>
+            {% for restaurant in restaurants %}
+                <div class="row liste-restaurants py-2">
+                    <div class=" col-xs-12 col-md-4 ">
+                        <img src="{{ asset('images/product/'~restaurant.photo) }}" alt="..."
+                             class="img-thumbnail img-fluid">
+                    </div>
+                    <div class="col-xs-12 col-md-5  my-auto ">
+                        <div class="row ">
+                            <div class="col-xs-12 d-flex justify-content-between d-md-block">
+                            {#si restaurant d'or rajouter la couronne#}
+                            <h3 class="ml-2 ">{{ restaurant.nom }}  <i class=" text-warning fas fa-crown"></i></h3>
 
-                      <address class="h6 ml-5">
-                          <small>
-                              {{restaurant.adresse}}<br>
-                              {{restaurant.codePostal}} {{restaurant.ville}} <br>
-                          </small>
-                      </address>
+                            <p class="ml-2 mt-md-0">
+                                <span class="badge badge-warning text-white">
+                                    {{ restaurant.type.nom }}
+                                </span>
+                            </p>
+                            </div>
+                            <div class="col-xs-12 col-md-12 d-flex justify-content-between d-md-block">
+                            <address >
+                                    {{ restaurant.adresse }}
+                                    {{ restaurant.codePostal }} {{ restaurant.ville }}
+                            </address>
+                        </div>
+                            <div class="col-xs-12 col-sm-12 d-flex justify-content-between d-md-block ">
+                                {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
+                                {#bouton par un bouton "je pré-commande"#}
+                                <a class="btn btn-success"
+                                        href="{{ path('index_menu', {
+                                            'id': restaurant.id
+                                        }) }}">Voir le menu
+                                </a>
+                                {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
+                                {#par "fermé - ouvre à ..:.." et le point devient rouge#}
+                                <span class="ml-lg-5 mt-1 open-close">
+                                    <i class="fas fa-circle text-success"></i>
+                                    Ouverture {{ restaurant.horaires }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3 text-warning my-auto bordure_verticale_liste">
+                        <ul class="mt-4  d-flex justify-content-between d-md-block">
+                            <li class="list-unstyled mr-2 "><i class="fas fa-clock"></i> 45 à 60 min</li>
+                            <li class="list-unstyled mr-2 mt-md-3"><i class="far fa-money-bill-alt"></i> Comm.
+                                min. {{ restaurant.commandeMin }} €
+                            </li>
+                            <li class="list-unstyled mt-md-3"><i class="fas fa-motorcycle"></i>
+                                {% if restaurant.prixLivraison == 0 %}
+                                    Livraison Gratuite
+                                {% else %}
+                                    Livraison {{ restaurant.prixLivraison }} €
+                                {% endif %}
+                            </li>
+                        </ul>
 
-                      <div class="buttons">
-                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
-                         bouton par un bouton "je pré-commande"#}
-                          <a class="button btn-success"
-                             href="{{ path('index_menu', {
-                                 'id': restaurant.id
-                             }) }}">Voir le menu</a>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
 
-                          {#Rajouter une condition Si le restaurant est fermé, remplacer le
-                         par "fermé - ouvre à ..:.." et le point devient rouge#}
-                          <span  class="ml-5"><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="text-warning my-auto mr-3">
-                  <ul>
-                      <li class="list-unstyled "><i class="fas fa-clock"></i> {{restaurant.horaires}}</li>
-                      <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i> Comm. min. {{restaurant.commandeMin}} €</li>
-                      <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i>
-                          {% if restaurant.prixLivraison == 0 %}
-                            Livraison Gratuite
-                          {% else %}
-                              Livraison {{ restaurant.prixLivraison }} €
-                          {% endif %}
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          {% endfor %}
-
-      </div>
-  </section>
+        </div>
+    </section>
 
 {% endblock %}
