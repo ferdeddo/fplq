@@ -11,7 +11,8 @@ function GetUnique(e){var l=[],s=temp_c=[],t=[
     "col-xl-4","col-xl-6","col-xl-12"];
 $(e).each(function(){
     for(var l=$(e+" > div").attr("class").split(/\s+/),t=0;t<l.length;t++)s.push(l[t])});
-for(var c=0;c<s.length;c++)temp_c=s[c].split("-"),2==temp_c.length&&(temp_c.push(""),temp_c[2]=temp_c[1],temp_c[1]="xs",s[c]=temp_c.join("-")),-1==$.inArray(s[c],l)&&$.inArray(s[c],t)&&l.push(s[c]);return l}function setcss(e,l,s){for(var t=["","","","","",""],c=d=f=g=0,r=[1200,992,768,567,0],a="",o=[],a=0;a<e.length;a++){var i=e[a].split("-");
+for(var c=0;c<s.length;c++)temp_c=s[c].split("-"), 2==temp_c.length&&(temp_c.push(""),temp_c[2]=temp_c[1],temp_c[1]="xs",s[c]=temp_c.join("-")),-1==$.inArray(s[c],l)&&$.inArray(s[c],t)&&l.push(s[c]);return l}function setcss(e,l,s){for(var t=["","","","","",""],c=d=f=g=0,r=[1200,992,768,567,0],a="",o=[],a=0;a<e.length;a++)
+{var i=e[a].split("-");
     if(3==i.length)
     {
         switch(i[1])
@@ -42,10 +43,6 @@ $(document).ready(function() {
     classes = GetUnique(item_1);
     setcss(classes, item_1, item_inner_1);
 });
-
-/*----------- MENU RESTAURANT ----------------*/
-// Ajouter un produit dans la side bar
-
 
 
 
