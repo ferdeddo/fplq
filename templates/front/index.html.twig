@@ -25,10 +25,10 @@
                 <span class="input-group-btn">
                     <i class="mt-2 fas fa-map-marker-alt"></i>
                 </span>
-                <input class="form-control" type="text" placeholder="Entrez votre adresse" aria-label="Search">
+               <input class="form-control" type="text" placeholder="Entrez votre adresse" aria-label="Search">
 
                 <div class="input-group-append">
-                    <button class="btn  btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> J'ai Faim</button>
+                    <a href="{{ path('index_restaurant') }}"><button class="btn  btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> J'ai Faim</button></a>
                 </div>
             </div>
         </section>
@@ -57,7 +57,7 @@
                                                             {{restaurant.codePostal}} {{restaurant.ville}} <br>
                                                         </small>
                                                     </address>
-                                                    <p class="card-text">{{restaurant.description}}</p>
+                                                    <p class="card-text">{{restaurant.description|raw}}</p>
                                                     {#STAR RATING#}
                                                     <div class="container mb-2 text-center">
                                                         <span class="fa fa-star checked"></span>
