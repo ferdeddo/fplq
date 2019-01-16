@@ -35,7 +35,7 @@ class SecurityController extends AbstractController
 
         # Notification
         $this->addFlash('notice_connexion',
-            'Bonjour ! vous êtes connecté.');
+            'Bonjour! Vous êtes connecté.');
 
         # Dernier email saisi par l'utilisateur.
         $lastEmail = $authenticationUtils->getLastUsername();

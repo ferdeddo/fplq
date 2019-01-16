@@ -21,6 +21,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
+    /**
+     * Page d'Accueil
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function index(Request $request, \Swift_Mailer $mailer)
     {
 
@@ -53,11 +58,11 @@ class IndexController extends AbstractController
 
             $mailer->send($message);
 
-//            b3547af6c0-44c0b6@inbox.mailtrap.io
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
 
             # Notification
             $this->addFlash('notice_inscription',
-                'Félicitations, votre envoi a bien été validé, un commercial vous contactera dans 24h!');
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
 
             # Redirection
             return $this->redirectToRoute('index');
@@ -73,7 +78,7 @@ class IndexController extends AbstractController
      * Page permettant d'afficher les restaurants
      * @Route("membre/listerestaurants", name="index_restaurant")
      */
-    public function listerestaurants(Request $request)
+    public function listeRestaurants(Request $request)
     {
         $repository = $this->getDoctrine()
             ->getRepository(Restaurant::class);
@@ -97,7 +102,7 @@ class IndexController extends AbstractController
      * @param Restaurant $restaurant
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function menurestaurants(Request $request, Restaurant $restaurant)
+    public function menuRestaurants(Request $request, Restaurant $restaurant)
     {
         $repository_entrees = $this->getDoctrine()
             ->getRepository(Entree::class);
@@ -132,10 +137,18 @@ class IndexController extends AbstractController
 
     /**
      * Page permettant d'afficher le profil de l'utilisateur connecté
-     * @Route("/interface_user", name="index_interface_user")
+     * @Route("/profil", name="profil")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function InterfaceUser()
+    public function profil(Request $request)
     {
-        return $this->render('membre/InterfaceUser.html.twig');
+        # creation du formulaire ContactFormType
+        $form = $this->createForm(ContactFormType::class)
+            ->handleRequest($request);
+
+        return $this->render('membre/profil.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
