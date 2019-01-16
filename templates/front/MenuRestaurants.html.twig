@@ -6,26 +6,47 @@
 
 {% block content %}
     <section class="container">
-        <div class="row">
-            <div class="col-3">
-                <img src="{{ asset('images/product/'~restaurant.photo) }}" alt="..." class="img-thumbnail">
+        <div class="row liste-restaurants mt-5 py-2">
+            <div class=" col-xs-12 col-md-4 ">
+                <img src="{{ asset('images/product/'~restaurant.photo) }}" alt="..."
+                     class="img-thumbnail img-fluid">
             </div>
-            <div class="col-4">
+            <div class="col-xs-12 col-md-5  my-auto ">
+                <div class="row ">
+                    <div class="col-xs-12 d-flex justify-content-between d-md-block">
+                        {#si restaurant d'or rajouter la couronne#}
+                        <h3 class="ml-2 ">{{ restaurant.nom }}  <i class=" text-warning fas fa-crown"></i></h3>
 
-                {#si restaurant d'or rajouter la couronne#}
-                <h1>{{restaurant.nom}}<i class="text-warning fas fa-crown"></i></h1>
-                {#Rajouter une condition Si le restaurant est fermé, remplacer le
-                par "fermé - ouvre à ..:.." et le point devient rouge#}
-                <p><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</p>
+                        <p class="ml-2 mt-md-0">
+                                <span class="badge badge-warning text-white">
+                                    {{ restaurant.type.nom }}
+                                </span>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-md-12 d-flex justify-content-between d-md-block">
+                        <address >
+                            {{ restaurant.adresse }}
+                            {{ restaurant.codePostal }} {{ restaurant.ville }}
+                        </address>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 d-flex justify-content-between d-md-block ">
 
-
-                <p>Type: {{restaurant.type.nom}}</p>
+                        {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
+                        {#par "fermé - ouvre à ..:.." et le point devient rouge#}
+                        <span class=" mt-1 open-close">
+                                    <i class="fas fa-circle text-success"></i>
+                                    Ouverture {{ restaurant.horaires }}
+                                </span>
+                    </div>
+                </div>
             </div>
-            <div class="col-5">
-                <ul class="mt-5">
-                    <li class="list-unstyled "><i class="fas fa-clock"></i> 45 à 60 min</li>
-                    <li class="list-unstyled mt-3"><i class="far fa-money-bill-alt"></i> Comm. min. {{restaurant.commandeMin}} €</li>
-                    <li class="list-unstyled mt-3"><i class="fas fa-motorcycle"></i>
+            <div class="col-xs-12 col-md-3 text-warning my-auto bordure_verticale_liste">
+                <ul class="mt-4  d-flex justify-content-between d-md-block">
+                    <li class="list-unstyled mr-2 "><i class="fas fa-clock"></i> 45 à 60 min</li>
+                    <li class="list-unstyled mr-2 mt-md-3"><i class="far fa-money-bill-alt"></i> Comm.
+                        min. {{ restaurant.commandeMin }} €
+                    </li>
+                    <li class="list-unstyled mt-md-3"><i class="fas fa-motorcycle"></i>
                         {% if restaurant.prixLivraison == 0 %}
                             Livraison Gratuite
                         {% else %}
@@ -35,7 +56,8 @@
                 </ul>
 
             </div>
-        </div> <hr>
+        </div>
+        <hr>
     </section>
 
     <section class="container mb-3">
