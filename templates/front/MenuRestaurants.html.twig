@@ -6,25 +6,23 @@
 
 {% block content %}
     <section class="container">
-        <div class="row liste-restaurants mt-5 py-2">
+        <div class="row liste-restaurants py-2">
             <div class=" col-xs-12 col-md-4 ">
                 <img src="{{ asset('images/product/'~restaurant.photo) }}" alt="..."
                      class="img-thumbnail img-fluid">
             </div>
-            <div class="col-4">
-
-                {#si restaurant d'or rajouter la couronne#}
-                <h1>{{restaurant.nom}}<i class="text-warning fas fa-crown"></i>
-                    {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('carte_restaurant', {
-                                'restaurant': restaurant.id
-                            }) }}"><br>
-                                <small class="h6">Compléter la carte</small></a>
-                    {% endif %}
-                </h1>
-                {#Rajouter une condition Si le restaurant est fermé, remplacer le
-                par "fermé - ouvre à ..:.." et le point devient rouge#}
-                <p><i class="fas fa-circle text-success"></i> Ouverture {{restaurant.horaires}}</p>
+            <div class="col-xs-12 col-md-5  my-auto ">
+                <div class="row ">
+                    <div class="ml-3 ml-md-0 col-xs-12 d-flex justify-content-between d-md-block">
+                        {#si restaurant d'or rajouter la couronne#}
+                        <h3 >{{restaurant.nom}}<i class="text-warning fas fa-crown"></i>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('carte_restaurant', {
+                                    'restaurant': restaurant.id
+                                }) }}"><br>
+                                    <small class="h6">Compléter la carte</small></a>
+                            {% endif %}
+                        </h3>
 
                         <p class="ml-2 mt-md-0">
                                 <span class="badge badge-warning text-white">
@@ -39,7 +37,6 @@
                         </address>
                     </div>
                     <div class="col-xs-12 col-sm-12 d-flex justify-content-between d-md-block ">
-
                         {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
                         {#par "fermé - ouvre à ..:.." et le point devient rouge#}
                         <span class=" mt-1 open-close">
