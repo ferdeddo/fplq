@@ -12,10 +12,10 @@
         <br>
         <div class="row">
             <div class="col-3">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <div class="nav flex-column nav-pills yellow" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profil</a>
-                    <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list-alt"></i> Dernières commandes</a>
-                    <a class="nav-link " id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list-alt"></i> Dernières commandes</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                 </div>
             </div>
             <div class="col-9">
@@ -32,8 +32,9 @@
                                     <p><i class="fas fa-at"></i> {{ app.user.email }}</p>
                                     <hr>
                                     <p><i class="fas fa-phone"></i> {{ app.user.telephone }}</p>
-                                    {#<hr>
-                                    <div class="h6 custom-control-inline ">
+                                    <hr>
+                                    <p><img class="rounded mx-auto d-block" src="{{ asset('images/product/'~app.user.photo) }}" alt="Profile Pic"></p>
+                                    {#<div class="h6 custom-control-inline ">
                                         <i class=" mt-2 fas fa-map-marker-alt"></i>
                                         <p class="ml-2">2 rue de la boite<br>
                                             78190 TRAPPES</p> <br>
@@ -68,7 +69,7 @@
                             <div class="col-4 bordure_verticale">
                                 <p>Détails de la commande :</p>
                                 <ul class="pr-2">
-                                    <li class="list-unstyled resume-menu">1 x Menu classiques yakitori plus</li>
+                                    <li class="list-unstyled resume-menu">1 x Menu classiques Yakitori Plus</li>
                                     <li class="list-unstyled resume-menu">1 x Brochette boeuf fromage</li>
                                     <li class="list-unstyled resume-menu">1 x Brochette poulet</li>
                                     <li class="list-unstyled resume-menu">1 x California poulet cuit</li>
@@ -98,7 +99,7 @@
                                 <p>Détails de la commande :</p>
                                 <ul class="pr-2">
                                     <li class="list-unstyled resume-menu">1 x Menu Enfant</li>
-                                    <li class="list-unstyled resume-menu">1 x Menu Burger le Classique</li>
+                                    <li class="list-unstyled resume-menu">1 x Menu Burger Le Classique</li>
                                     <li class="list-unstyled resume-menu">1 x Tacos Medium</li>
                                     <li class="list-unstyled resume-menu">1 x Chicken Whoper</li>
 
@@ -126,9 +127,9 @@
                             <div class="col-4 bordure_verticale">
                                 <p>Détails de la commande :</p>
                                 <ul class="pr-2">
-                                    <li class="list-unstyled resume-menu">1 x Pizza mexicaine sénior</li>
-                                    <li class="list-unstyled resume-menu">1 x Pizza western sénior</li>
-                                    <li class="list-unstyled resume-menu">1 x Pizza Indiana sénior</li>
+                                    <li class="list-unstyled resume-menu">1 x Pizza Mexicaine Senior</li>
+                                    <li class="list-unstyled resume-menu">1 x Pizza Western Senior</li>
+                                    <li class="list-unstyled resume-menu">1 x Pizza Indiana Senior</li>
                                 </ul>
                             </div>
                         </div> <hr>

@@ -9,16 +9,20 @@
 namespace App\Controller\fplq;
 
 
+use App\Controller\HelperTrait;
 use App\Entity\Membre;
 use App\Form\MembreFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 class MembreController extends AbstractController
 {
+    use HelperTrait;
+
     /**
      * @Route("/inscription", name="membre_inscription")
      * @param Request $request
@@ -37,6 +41,25 @@ class MembreController extends AbstractController
 
         # Soumission du Formulaire
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // $photo stores the uploaded file
+            /** @var UploadedFile $photo */
+            $photo = $membre->getPhoto();
+
+            $fileName = $this->slugify($membre->getPrenom()). '-' . $this->slugify($membre->getNom()). '.' .$photo->guessExtension();
+
+            // Move the file to the directory where images are stored
+            try {
+                $photo->move(
+                    $this->getParameter('restaurants_assets_dir'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            # Mise à jour de l'image
+            $membre->setPhoto($fileName);
 
             # Encodage du mot de passe
             $membre->setPassword($passwordEncoder
