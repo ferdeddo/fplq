@@ -3,7 +3,7 @@
 {% set active = 'inscription' %}
 
 {% block page_title %}
-    user name
+    {{ app.user.prenom }}
 {% endblock %}
 
 
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profile</a>
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profil</a>
                     <a class="nav-link " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list-alt"></i> Dernières commandes</a>
                     <a class="nav-link " id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                 </div>
@@ -27,18 +27,18 @@
                             </div>
                             <div class="card-body">
                                 <div class="label label-success">
-                                    <p><i class="far fa-id-card"></i> Vincent AMAR</p>
+                                    <p><i class="far fa-id-card"></i> {{ app.user.prenom }} {{ app.user.nom }}</p>
                                     <hr>
-                                    <p><i class="fas fa-at"></i> ferdeddo@gmail.com</p>
+                                    <p><i class="fas fa-at"></i> {{ app.user.email }}</p>
                                     <hr>
-                                    <p><i class="fas fa-phone"></i> O645454545</p>
-                                    <hr>
+                                    <p><i class="fas fa-phone"></i> {{ app.user.telephone }}</p>
+                                    {#<hr>
                                     <div class="h6 custom-control-inline ">
                                         <i class=" mt-2 fas fa-map-marker-alt"></i>
                                         <p class="ml-2">2 rue de la boite<br>
                                             78190 TRAPPES</p> <br>
 
-                                    </div>
+                                    </div>#}
 
                                 </div>
 
@@ -55,7 +55,7 @@
                             <div class="col-5">
 
                                 {#si restaurant d'or rajouter la couronne#}
-                                <h3 >Le Jap<i class="text-warning fas fa-crown"></i></h3>
+                                <h3 >Le Jap</h3>
 
                                 <small>2 Square Paul Langevin, Trappes, France </small>
                                 <br>
@@ -66,7 +66,7 @@
 
                             </div>
                             <div class="col-4 bordure_verticale">
-                                <p>Détail de la commande :</p>
+                                <p>Détails de la commande :</p>
                                 <ul class="pr-2">
                                     <li class="list-unstyled resume-menu">1 x Menu classiques yakitori plus</li>
                                     <li class="list-unstyled resume-menu">1 x Brochette boeuf fromage</li>
@@ -84,7 +84,7 @@
                             <div class="col-5">
 
                                 {#si restaurant d'or rajouter la couronne#}
-                                <h3 >Eat's Time<i class="text-warning fas fa-crown"></i></h3>
+                                <h3 >Eat's Time</h3>
 
                                 <small>2 Square Paul Langevin, Trappes, France </small>
                                 <br>
@@ -95,7 +95,7 @@
 
                             </div>
                             <div class="col-4 bordure_verticale">
-                                <p>Détail de la commande :</p>
+                                <p>Détails de la commande :</p>
                                 <ul class="pr-2">
                                     <li class="list-unstyled resume-menu">1 x Menu Enfant</li>
                                     <li class="list-unstyled resume-menu">1 x Menu Burger le Classique</li>
@@ -113,7 +113,7 @@
                             <div class="col-5">
 
                                 {#si restaurant d'or rajouter la couronne#}
-                                <h3 >Trappito<i class="text-warning fas fa-crown"></i></h3>
+                                <h3 >Trappito</h3>
 
                                 <small>2 Square Paul Langevin, Trappes, France </small>
                                 <br>
@@ -124,7 +124,7 @@
 
                             </div>
                             <div class="col-4 bordure_verticale">
-                                <p>Détail de la commande :</p>
+                                <p>Détails de la commande :</p>
                                 <ul class="pr-2">
                                     <li class="list-unstyled resume-menu">1 x Pizza mexicaine sénior</li>
                                     <li class="list-unstyled resume-menu">1 x Pizza western sénior</li>
@@ -161,7 +161,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                    <button type="button" class="btn btn-danger">Se déconnecter</button>
+                                                    <a class="btn btn-danger" href="{{ path('security_deconnexion') }}">Se déconnecter</a>
                                                 </div>
                                             </div>
                                         </div>

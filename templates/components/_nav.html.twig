@@ -2,50 +2,62 @@
 <nav class="navbar navbar-expand-lg navbar-success bg-success text-white">
     <div class="container">
 
-    <a class="navbar-brand text-white" href="{{ path('index') }}">
-        <img src="{{ asset('images/logo.png') }}" width="40" alt="logo">
-        Fais Pas La Queue</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand text-white" href="{{ path('index') }}">
+            <img src="{{ asset('images/logo.png') }}" width="40" alt="logo">
+            Fais Pas La Queue</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto ">
-            <li>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a class="nav-link h6" href="{{ path('security_deconnexion') }}">Déconnexion</a>
-            </li>
-            <li  class="nav-item {% if active == 'listerestaurant' %}active{% endif %}">
-                <a class="nav-link h6"  href="{{ path('index_restaurant') }}">
-                    <i class="fas fa-sign-in-alt"></i>Liste Restaurants</a>
-            </li>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ">
+                <li>
 
-            {% else %}
-            <li class="nav-item {% if active == 'connexion' %}active{% endif %}">
-                <a class="nav-link h6" href="{{ path('security_connexion') }}"><i class="fas fa-sign-in-alt"></i> Connexion </a>
-            </li>
-            <li  class="nav-item {% if active == 'inscription' %}active{% endif %}">
-                <a class="nav-link h6"  href="{{ path('membre_inscription') }}">
-                    <i class="far fa-edit"></i>Inscription</a>
-            </li>
-            {% endif %}
-            <li  class="nav-item  {% if active == 'admin/inscription_restaurant' %}active{% endif %}">
-            {% if is_granted('ROLE_ADMIN') %}
-                <a class="nav-link h6"  href="{{ path('restaurant_inscription') }}">
-                    <i class="far fa-edit"></i>Inscription restaurant</a>
-            </li>
-            {% endif %}
-            <li class="nav-item  {% if active == 'faq' %}active{% endif %}">
-                <a class="nav-link h6" href="#">FAQ</a>
-            </li>
-            <li class="nav-item minicart ">
-                <a class="nav-link  text-white h6" href="#">
-                    {#le pannier affiche le prix en temps réel#}
-                    <span class="badge badge-light" data-toggle="modal" data-target="#cart"><span class="total-cart"></span> € <i class="fas fa-shopping-basket"></i></span>
-                </a>
-            </li>
-        </ul>
-    </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.prenom }}
+                        </button>
+                        <div class="dropdown-menu bg-success text-white" aria-labelledby="dropdownMenuButton">
+                            <a class="nav-link h6" href="{{ path('profil') }}">Mon Profil</a>
+                            <a class="nav-link h6" href="{{ path('security_deconnexion') }}">Déconnexion</a>
+                        </div>
+                    </div>
+                </li>
+                <li  class="nav-item {% if active == 'listerestaurant' %}active{% endif %}">
+                    <a class="nav-link h6"  href="{{ path('index_restaurant') }}">
+                        <i class="fas fa-sign-in-alt"></i> Liste Restaurants</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item {% if active == 'connexion' %}active{% endif %}">
+                    <a class="nav-link h6" href="{{ path('security_connexion') }}"><i class="fas fa-sign-in-alt"></i> Connexion </a>
+                </li>
+                <li  class="nav-item {% if active == 'inscription' %}active{% endif %}">
+                    <a class="nav-link h6"  href="{{ path('membre_inscription') }}">
+                        <i class="far fa-edit"></i> Inscription</a>
+                </li>
+
+                {% endif %}
+                <li  class="nav-item  {% if active == 'admin/inscription_restaurant' %}active{% endif %}">
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link h6"  href="{{ path('restaurant_inscription') }}">
+                        <i class="far fa-edit"></i>Inscription restaurant</a>
+                </li>
+
+                {% endif %}
+                <li class="nav-item  {% if active == 'faq' %}active{% endif %}">
+                    <a class="nav-link h6" href="#">FAQ</a>
+                </li>
+                <li class="nav-item minicart ">
+                    <a class="nav-link  text-white h6" href="#">
+                        {#le pannier affiche le prix en temps réel#}
+                        <span class="badge badge-light" data-toggle="modal" data-target="#cart"><span class="total-cart"></span> € <i class="fas fa-shopping-basket"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 {#<div>#}

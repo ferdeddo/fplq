@@ -76,6 +76,11 @@ class Membre implements UserInterface
     private $mdp;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $telephone;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="photo", type="string", length=180, nullable=true)
@@ -85,7 +90,6 @@ class Membre implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Livraison", mappedBy="membre")
      */
-
     private $livraisons;
 
     /**
@@ -158,6 +162,18 @@ class Membre implements UserInterface
     public function setPassword(string $mdp): self
     {
         $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -281,4 +297,5 @@ class Membre implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
 }
