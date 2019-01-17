@@ -1,6 +1,10 @@
 ﻿body{
 
 }
+/*BALISE SPAN DU TEXT DE LA PAGE INDEX*/
+span{
+    font-weight: bold;
+}
 
 /*CLASS ACTIVE*/
 .active{
