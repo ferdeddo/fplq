@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Collection;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
@@ -70,7 +71,7 @@ class Membre implements UserInterface
      * )
      * @Assert\Regex(
      *     pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$/",
-     *     message="Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre."
+     *     message="Votre mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre. Pas de caractères spéciaux"
      * )
      */
     private $mdp;

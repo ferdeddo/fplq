@@ -13,7 +13,7 @@ use Twig\Extension\AbstractExtension;
 
 class AppExtension extends AbstractExtension
 {
-    public const NB_SUMMARY_CHAR = 100;
+    public const NB_SUMMARY_CHAR = 130;
 
     public function getFilters()
     {

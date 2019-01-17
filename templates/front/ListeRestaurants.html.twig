@@ -29,21 +29,21 @@
                     <div class="col-xs-12 col-md-5  my-auto ">
                         <div class="row ">
                             <div class="col-xs-12 d-flex justify-content-between d-md-block">
-                            {#si restaurant d'or rajouter la couronne#}
-                            <h3 class="ml-2 ">{{ restaurant.nom }}  <i class=" text-warning fas fa-crown"></i></h3>
+                                {#si restaurant d'or rajouter la couronne#}
+                                <h3 class="ml-2 ">{{ restaurant.nom }}  <i class=" text-warning fas fa-crown"></i></h3>
 
-                            <p class="ml-2 mt-md-0">
-                                <span class="badge badge-warning text-white">
-                                    {{ restaurant.type.nom }}
-                                </span>
-                            </p>
+                                <p class="ml-2 mt-md-0">
+                                    <span class="badge badge-warning text-white">
+                                        {{ restaurant.type.nom }}
+                                    </span>
+                                </p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 d-flex justify-content-between d-md-block">
+                                <address >
+                                        {{ restaurant.adresse }}
+                                        {{ restaurant.codePostal }} {{ restaurant.ville }}
+                                </address>
                             </div>
-                            <div class="col-xs-12 col-md-12 d-flex justify-content-between d-md-block">
-                            <address >
-                                    {{ restaurant.adresse }}
-                                    {{ restaurant.codePostal }} {{ restaurant.ville }}
-                            </address>
-                        </div>
                             <div class="col-xs-12 col-sm-12 d-flex justify-content-between d-md-block ">
                                 {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
                                 {#bouton par un bouton "je pré-commande"#}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Restaurant
@@ -27,6 +28,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Entrez le nom de votre restaurant SVP.")
      */
     private $nom;
 
@@ -41,6 +43,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=80, nullable=false)
+     * @Assert\NotBlank(message="Entrez l'adresse de votre restaurant SVP.")
      */
     private $adresse;
 
@@ -48,6 +51,7 @@ class Restaurant
      * @var int
      *
      * @ORM\Column(name="code_postal", type="integer", nullable=false)
+     * @Assert\NotBlank(message="Entrez le code postal de votre restaurant SVP.")
      */
     private $codePostal;
 
@@ -55,6 +59,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Entrez la ville de votre restaurant SVP.")
      */
     private $ville;
 
@@ -62,6 +67,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="horaires", type="string", length=80, nullable=false)
+     * @Assert\NotBlank(message="Entrez les horaires de votre restaurant SVP.")
      */
     private $horaires;
 
@@ -69,6 +75,7 @@ class Restaurant
      * @var double
      *
      * @ORM\Column(name="commande_min", type="float", nullable=false)
+     * @Assert\NotBlank(message="Entrez le montant min. de commande SVP.")
      */
     private $commandeMin;
 
@@ -76,6 +83,7 @@ class Restaurant
      * @var double
      *
      * @ORM\Column(name="prix_livraison", type="float", nullable=false)
+     * @Assert\NotBlank(message="Entrez le prix de vos livraisons SVP.")
      */
     private $prixLivraison;
 
@@ -83,6 +91,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=180, nullable=false)
+     * @Assert\NotBlank(message="Entrez la photo de votre restaurant SVP.")
      */
     private $photo;
 
@@ -97,6 +106,7 @@ class Restaurant
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=0, nullable=false)
+     * @Assert\NotBlank(message="Entrez la description de votre restaurant SVP.")
      */
     private $description;
 

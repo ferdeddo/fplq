@@ -40,11 +40,18 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 d-flex justify-content-between d-md-block ">
                         {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
+                        {#bouton par un bouton "je pré-commande"#}
+                        <a class="btn btn-success"
+                           href="{{ path('index_menu', {
+                               'id': restaurant.id
+                           }) }}">Voir le menu
+                        </a>
+                        {#Rajouter une condition Si le restaurant est fermé, remplacer le#}
                         {#par "fermé - ouvre à ..:.." et le point devient rouge#}
-                        <span class=" mt-1 open-close">
-                                    <i class="fas fa-circle text-success"></i>
-                                    Ouverture {{ restaurant.horaires }}
-                                </span>
+                        <span class="ml-lg-5 mt-1 open-close">
+                            <i class="fas fa-circle text-success"></i>
+                            Ouverture {{ restaurant.horaires }}
+                        </span>
                     </div>
                 </div>
             </div>
