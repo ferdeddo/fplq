@@ -217,6 +217,7 @@ class MenuController extends AbstractController
         }
 
         return $this->render('restaurant/carte.html.twig', [
+            'restaurant' => $restaurant,
             'form' => $form->createView(),
             'form_entree' => $form_entree->createView(),
             'form_menu' => $form_menu->createView(),

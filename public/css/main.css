@@ -11,6 +11,14 @@ a:hover{
     color:#FFC107;
 }
 
+.btn-dropdown{
+    color: white;
+}
+
+.btn-dropdown:hover{
+    color: #FFC107;
+}
+
 /*SEARCH BAR*/
 #custom-search-input{
     padding: 3px;
@@ -180,6 +188,11 @@ LISTE RESTAURANT Product Card Styles
 .card {
     margin-bottom: 20px;
 }
+.btn-panier{
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
 
 /*------------ USER INTERFACE -------------*/
 .bordure_verticale{
@@ -229,4 +242,10 @@ LISTE RESTAURANT Product Card Styles
     font-size: 1.25rem;
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
     margin: 2rem 25% ;
+}
+
+/*-------------- FOOTER ----------------*/
+
+.mb-social{
+    margin-bottom: 2.5rem;
 }

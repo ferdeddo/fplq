@@ -15,23 +15,27 @@
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ app.user.prenom }}
                         </button>
                         <div class="dropdown-menu bg-success text-white" aria-labelledby="dropdownMenuButton">
-                            <a class="nav-link h6" href="{{ path('profil') }}">Mon Profil</a>
-                            <a class="nav-link h6" href="{{ path('security_deconnexion') }}">Déconnexion</a>
+                            <a class="nav-link h6" href="{{ path('profil') }}">
+                                <i class="fas fa-user-circle"></i> Mon Profil</a>
+                            <hr>
+                            <a class="nav-link h6" href="{{ path('security_deconnexion') }}">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
                     </div>
                 </li>
                 <li  class="nav-item {% if active == 'listerestaurant' %}active{% endif %}">
                     <a class="nav-link h6"  href="{{ path('index_restaurant') }}">
-                        <i class="fas fa-sign-in-alt"></i> Liste Restaurants</a>
+                        <i class="fas fa-list-ul"></i> Liste Restaurants</a>
                 </li>
 
                 {% else %}
                 <li class="nav-item {% if active == 'connexion' %}active{% endif %}">
-                    <a class="nav-link h6" href="{{ path('security_connexion') }}"><i class="fas fa-sign-in-alt"></i> Connexion </a>
+                    <a class="nav-link h6" href="{{ path('security_connexion') }}">
+                        <i class="fas fa-sign-in-alt"></i> Connexion </a>
                 </li>
                 <li  class="nav-item {% if active == 'inscription' %}active{% endif %}">
                     <a class="nav-link h6"  href="{{ path('membre_inscription') }}">
@@ -43,7 +47,7 @@
 
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="nav-link h6"  href="{{ path('restaurant_inscription') }}">
-                        <i class="far fa-edit"></i>Inscription restaurant</a>
+                        <i class="far fa-edit"></i> Inscription restaurant</a>
                 </li>
 
                 {% endif %}
@@ -60,38 +64,5 @@
         </div>
     </div>
 </nav>
-{#<div>#}
-    {#{{ dump(app.user) }}#}
-{#</div>#}
-<!-- Modal -->
-<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Panier</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="text-white">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="show-cart table">
 
-                </table>
-                <div class="font-weight-bold ">Valeur de votre Panier:
-                    <h1 class="">
-                        <a href="" class="badge badge-success">
-                            <span class="total-cart"> </span>
-                            €
-                        </a>
-                    </h1>
-                </div>
-            </div>
-            <div class="modal-footer p-0 pr-1">
-                <button type="button" class=" py-2 btn btn-secondary" data-dismiss="modal">Close</button>
-                <button class="py-2 clear-cart btn btn-warning">Vider le Panier</button>
-                <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-                <div class="mt-4" id="paypal"></div>
-            </div>
-        </div>
-    </div>
-</div>
+{% include "/components/_panier.html.twig" %}

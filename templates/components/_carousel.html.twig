@@ -13,7 +13,7 @@
                         {{restaurant.codePostal}} {{restaurant.ville}} <br>
                     </small>
                 </address>
-                <p class="card-text">{{restaurant.description}}</p>
+                <p class="card-text">{{ restaurant.description|raw|summary }}</p>
                 {#STAR RATING#}
                 <div class="container mb-2 text-center">
                     <span class="fa fa-star checked"></span>

@@ -1,11 +1,14 @@
 {% extends "layout.html.twig" %}
+
 {% set active='menu' %}
+
 {% block page_title %}
     Menu {{restaurant.nom}}
 {% endblock %}
 
 {% block content %}
     <section class="container">
+        <br>
         <div class="row liste-restaurants py-2">
             <div class=" col-xs-12 col-md-4 ">
                 <img src="{{ asset('images/product/'~restaurant.photo) }}" alt="..."
@@ -60,10 +63,11 @@
                         {% endif %}
                     </li>
                 </ul>
-
+            </div>
+            <div class="col-xs-12 col-md-12 my-auto text-center"><br>
+                <p>{{ restaurant.description|raw }}</p>
             </div>
         </div>
-        <hr>
     </section>
 
     <section class="container mb-3">
@@ -71,7 +75,7 @@
             <!-- Page Content -->
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="">Menu</h1>
+                            <h1 class="">Carte</h1>
                             <div id="accordion" role="tablist">
                                 <div class="card">
                                     <div class="card-header" role="tab" id="headingOne">
@@ -97,7 +101,7 @@
                                                             <p class="font-weight-bold">{{ entree.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% else %}
@@ -110,7 +114,7 @@
                                                             <p class="font-weight-bold">{{ entree.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ entree.nom }}" data-price="{{ entree.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% endif %}
@@ -143,7 +147,7 @@
                                                             <p class="font-weight-bold">{{ menu.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% else %}
@@ -156,7 +160,7 @@
                                                             <p class="font-weight-bold">{{ menu.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ menu.nom }}" data-price="{{ menu.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% endif %}
@@ -188,7 +192,7 @@
                                                             <p class="font-weight-bold">{{ dessert.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% else %}
@@ -201,7 +205,7 @@
                                                             <p class="font-weight-bold">{{ dessert.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ dessert.nom }}" data-price="{{ dessert.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% endif %}
@@ -233,7 +237,7 @@
                                                             <p class="font-weight-bold">{{ boisson.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% else %}
@@ -246,7 +250,7 @@
                                                             <p class="font-weight-bold">{{ boisson.prix|round(1,'floor') }} €</p>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
+                                                            <button type="button" data-name="{{ boisson.nom }}" data-price="{{ boisson.prix|round(1,'floor') }}" class="btn btn-outline-success add-to-cart float-right"><i class=" fas fa-plus"></i> </button>
                                                         </div>
                                                     </div><hr>
                                                 {% endif %}
