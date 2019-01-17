@@ -28,7 +28,8 @@
                <input class="form-control" type="text" placeholder="Entrez votre adresse" aria-label="Search">
 
                 <div class="input-group-append">
-                    <a href="{{ path('index_restaurant') }}"><button class="btn  btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> J'ai Faim</button></a>
+                    <a href="{{ path('index_restaurant') }}"></a>
+                    <button class="btn  btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> J'ai Faim</button>
                 </div>
             </div>
         </section>
@@ -57,7 +58,7 @@
                         </div>
 
                     {#-----------Carousel 2 (responsive)-------------#}
-                        <div id="carouselExampleControls " class="carousel slide slider-2 " data-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel slide slider-2 " data-ride="carousel">
                             <div class="carousel-inner">
                                 {% for restaurant in restaurants %}
                                     {% include "components/_carousel2.html.twig" %}
