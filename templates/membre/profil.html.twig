@@ -11,7 +11,7 @@
     <div class="container user-interface">
         <br>
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 ">
                 <div class="nav flex-column nav-pills yellow" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profil</a>
                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list-alt"></i> Dernières commandes</a>
@@ -27,19 +27,22 @@
                             </div>
                             <div class="card-body">
                                 <div class="label label-success">
-                                    <p><i class="far fa-id-card"></i> {{ app.user.prenom }} {{ app.user.nom }}</p>
-                                    <hr>
-                                    <p><i class="fas fa-at"></i> {{ app.user.email }}</p>
-                                    <hr>
-                                    <p><i class="fas fa-phone"></i> {{ app.user.telephone }}</p>
-                                    <hr>
-                                    <p><img class="rounded mx-auto d-block" src="{{ asset('images/product/'~app.user.photo) }}" alt="Profile Pic"></p>
+
+                                    <p><img class="rounded-circle mx-auto d-block img-fluid img-thumbnail" width="255" src="{{ asset('images/product/'~app.user.photo) }}" alt="Profile Pic"></p>
                                     {#<div class="h6 custom-control-inline ">
                                         <i class=" mt-2 fas fa-map-marker-alt"></i>
                                         <p class="ml-2">2 rue de la boite<br>
                                             78190 TRAPPES</p> <br>
 
                                     </div>#}
+                                    <hr>
+                                    <p><i class="far fa-id-card"></i> {{ app.user.prenom }} {{ app.user.nom }}</p>
+                                    <hr>
+                                    <p><i class="fas fa-at"></i> {{ app.user.email }}</p>
+                                    <hr>
+                                    <p><i class="fas fa-phone"></i> {{ app.user.telephone }}</p>
+
+
 
                                 </div>
 
@@ -176,5 +179,152 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container user-interface2">
+        <br>
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> Dernières commandes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"> Déconnexion</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="card border-success" style="margin: 1em;">
+                    <div class="card-header">
+                        <h4 class="card-title">Coordonnées</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="label label-success">
+
+                            <p><img class="rounded-circle mx-auto d-block img-fluid img-thumbnail" width="150" src="{{ asset('images/product/'~app.user.photo) }}" alt="Profile Pic"></p>
+                            {#<div class="h6 custom-control-inline ">
+                                <i class=" mt-2 fas fa-map-marker-alt"></i>
+                                <p class="ml-2">2 rue de la boite<br>
+                                    78190 TRAPPES</p> <br>
+
+                            </div>#}
+                            <hr>
+                            <p><i class="far fa-id-card"></i> {{ app.user.prenom }} {{ app.user.nom }}</p>
+                            <hr>
+                            <p><i class="fas fa-at"></i> {{ app.user.email }}</p>
+                            <hr>
+                            <p><i class="fas fa-phone"></i> {{ app.user.telephone }}</p>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row bg-light">
+                    <div class="col-12">
+                        <img src="/images/product/jap.jpg" alt="..." class="img-thumbnail">
+                    </div>
+                    <div class="col-12">
+
+                        {#si restaurant d'or rajouter la couronne#}
+                        <h3 >Le Jap</h3>
+
+                        <small>2 Square Paul Langevin, Trappes, France </small>
+                        <br>
+
+                        <small> 06/01/2019 19:38 </small>
+
+                        <p class="font-weight-bold mt-2">35,90 €</p>
+
+                    </div>
+                    <div class="col-12 bordure_verticale">
+                        <p>Détails de la commande :</p>
+                        <ul class="pr-2">
+                            <li class="list-unstyled resume-menu">1 x Menu classiques Yakitori Plus</li>
+                            <li class="list-unstyled resume-menu">1 x Brochette boeuf fromage</li>
+                            <li class="list-unstyled resume-menu">1 x Brochette poulet</li>
+                            <li class="list-unstyled resume-menu">1 x California poulet cuit</li>
+                            <li class="list-unstyled resume-menu">1 x California poulet cuit</li>
+                        </ul>
+                    </div>
+                </div> <hr>
+
+                <div class="row bg-light">
+                    <div class="col-12">
+                        <img src="/images/product/burger.jpg" alt="..." class="img-thumbnail">
+                    </div>
+                    <div class="col-12">
+
+                        {#si restaurant d'or rajouter la couronne#}
+                        <h3 >Eat's Time</h3>
+
+                        <small>2 Square Paul Langevin, Trappes, France </small>
+                        <br>
+
+                        <small> 06/01/2019 19:38 </small>
+
+                        <p class="font-weight-bold mt-2">25,90 €</p>
+
+                    </div>
+                    <div class="col-12 bordure_verticale">
+                        <p>Détails de la commande :</p>
+                        <ul class="pr-2">
+                            <li class="list-unstyled resume-menu">1 x Menu Enfant</li>
+                            <li class="list-unstyled resume-menu">1 x Menu Burger Le Classique</li>
+                            <li class="list-unstyled resume-menu">1 x Tacos Medium</li>
+                            <li class="list-unstyled resume-menu">1 x Chicken Whoper</li>
+
+                        </ul>
+                    </div>
+                </div> <hr>
+
+                <div class="row bg-light">
+                    <div class="col-12">
+                        <img src="/images/product/pizza.jpg" alt="..." class="img-thumbnail">
+                    </div>
+                    <div class="col-12">
+
+                        {#si restaurant d'or rajouter la couronne#}
+                        <h3 >Trappito</h3>
+
+                        <small>2 Square Paul Langevin, Trappes, France </small>
+                        <br>
+
+                        <small> 06/01/2019 19:38 </small>
+
+                        <p class="font-weight-bold mt-2">25,90 €</p>
+
+                    </div>
+                    <div class="col-12 bordure_verticale">
+                        <p>Détails de la commande :</p>
+                        <ul class="pr-2">
+                            <li class="list-unstyled resume-menu">1 x Pizza Mexicaine Senior</li>
+                            <li class="list-unstyled resume-menu">1 x Pizza Western Senior</li>
+                            <li class="list-unstyled resume-menu">1 x Pizza Indiana Senior</li>
+                        </ul>
+                    </div>
+                </div> <hr>
+            </div>
+
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <div class="card border-success" style="margin: 1em;">
+                    <div class="card-header">
+                        <h4 class="card-title">Déconnexion</h4>
+                    </div>
+                    <div class="card-body">
+                            <!-- Button trigger modal -->
+                            <a href="{{ path('security_deconnexion') }}" class="btn btn-danger btn-block text-white" >
+                                <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
