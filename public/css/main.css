@@ -195,30 +195,55 @@ LISTE RESTAURANT Product Card Styles
 }
 
 /*------------ USER INTERFACE -------------*/
-.bordure_verticale{
-    height: 100%;
-    border-left: 1px solid lightgray;
-}
-.bordure_verticale p{
-    font-size: 12px;
-}
-.resume-menu{
-    font-size: 10px;
-}
+
 .user-interface{
-    min-height: 650px;
+    display: none;
+}
+
+
+.user-interface2 a{
+    color: #ffc107;
+    font-size: small;
+}
+
+.user-interface2 a:hover{
+    color: #ffc107;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
     background-color: #ffc107;
 }
 
-.user-interface a{
-    color: #ffc107;
-}
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .user-interface2{
+        display: none;
+    }
+    .user-interface{
+        display: block;
+    }
+    .bordure_verticale{
+        height: 100%;
+        border-left: 1px solid lightgray;
+    }
+    .bordure_verticale p{
+        font-size: 12px;
+    }
+    .resume-menu{
+        font-size: 10px;
+    }
+    .user-interface{
+        min-height: 650px;
+    }
 
-.user-interface a:hover{
-    color: #ffc107;
+    .user-interface a{
+        color: #ffc107;
+    }
+
+    .user-interface a:hover{
+        color: #ffc107;
+    }
+
 }
 
 /*-------------- INSCRIPTION / CONNEXION ----------------*/
