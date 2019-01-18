@@ -11,6 +11,7 @@ namespace App\Controller\fplq;
 
 use App\Controller\HelperTrait;
 use App\Entity\Membre;
+use App\Form\ContactFormType;
 use App\Form\MembreFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -29,17 +30,52 @@ class MembreController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
     {
-        # création d'un membre
+        # Création d'un membre
         $membre = new Membre();
         $membre->setRoles(['ROLE_MEMBRE']);
 
-        # creation du formulaire MembreFormType
+        # Création du formulaire MembreFormType
         $form = $this->createForm(MembreFormType::class, $membre)
             ->handleRequest($request);
 
-        # Soumission du Formulaire
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
+            ->handleRequest($request);
+
+        # Soumission des Formulaires
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
+
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom($data['email'])
+                ->setTo('b3547af6c0-44c0b6@inbox.mailtrap.io')
+                ->setBody("Merci de bien vouloir prendre contact avec l'expediteur afin d'inscrire son restaurant en base de données !".
+                    '<br>'. $data['nom'].'<br>'.$data['prenom'].'<br>'.$data['email'].'<br>'.$data['tel'],
+//                    $this->renderView(
+//                    // templates/emails/registration.html.twig
+//                        'emails/registration.html.twig',
+//                        array('name' => $name)
+//                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
+
+            # Notification
+            $this->addFlash('notice_inscription',
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
+
+            # Redirection
+            return $this->redirectToRoute('membre_inscription');
+        }
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             // $photo stores the uploaded file
@@ -82,7 +118,8 @@ class MembreController extends AbstractController
         }
         # Affichage dans la Vue
         return $this->render('membre/inscription.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'form_contact' => $form_contact->createView()
         ]);
     }
 }

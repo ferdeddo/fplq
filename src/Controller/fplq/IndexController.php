@@ -34,14 +34,15 @@ class IndexController extends AbstractController
 
         $restaurants = $repository->findBy([]);
 
-        # creation du formulaire ContactFormType
-        $form = $this->createForm(ContactFormType::class)
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
         # Soumission du Formulaire
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
 
-            $data = $form->getData([]);
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
 
             $message = (new \Swift_Message('Hello Email'))
                 ->setFrom($data['email'])
@@ -70,7 +71,7 @@ class IndexController extends AbstractController
 
         return $this->render('front/index.html.twig', [
             'restaurants' => $restaurants,
-            'form' => $form->createView()
+            'form_contact' => $form_contact->createView()
         ]);
     }
 
@@ -78,20 +79,51 @@ class IndexController extends AbstractController
      * Page permettant d'afficher les restaurants
      * @Route("/listerestaurants", name="index_restaurant")
      */
-    public function listeRestaurants(Request $request)
+    public function listeRestaurants(Request $request, \Swift_Mailer $mailer)
     {
         $repository = $this->getDoctrine()
             ->getRepository(Restaurant::class);
 
         $restaurants = $repository->findBy([]);
 
-        # creation du formulaire ContactFormType
-        $form = $this->createForm(ContactFormType::class)
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
+
+        # Soumission du Formulaire
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
+
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom($data['email'])
+                ->setTo('b3547af6c0-44c0b6@inbox.mailtrap.io')
+                ->setBody("Merci de bien vouloir prendre contact avec l'expediteur afin d'inscrire son restaurant en base de données !".
+                    '<br>'. $data['nom'].'<br>'.$data['prenom'].'<br>'.$data['email'].'<br>'.$data['tel'],
+//                    $this->renderView(
+//                    // templates/emails/registration.html.twig
+//                        'emails/registration.html.twig',
+//                        array('name' => $name)
+//                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
+
+            # Notification
+            $this->addFlash('notice_inscription',
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
+
+            # Redirection
+            return $this->redirectToRoute('index_restaurant');
+        }
 
         return $this->render('front/ListeRestaurants.html.twig', [
             'restaurants' => $restaurants,
-            'form' => $form->createView()
+            'form_contact' => $form_contact->createView()
         ]);
     }
 
@@ -102,7 +134,7 @@ class IndexController extends AbstractController
      * @param Restaurant $restaurant
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function menuRestaurants(Request $request, Restaurant $restaurant)
+    public function menuRestaurants(Request $request, Restaurant $restaurant, \Swift_Mailer $mailer)
     {
         $repository_entrees = $this->getDoctrine()
             ->getRepository(Entree::class);
@@ -121,9 +153,40 @@ class IndexController extends AbstractController
         $desserts = $repository_desserts->findBy([]);
         $boissons = $repository_boissons->findBy([]);
 
-        # creation du formulaire ContactFormType
-        $form = $this->createForm(ContactFormType::class)
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
+
+        # Soumission du Formulaire
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
+
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom($data['email'])
+                ->setTo('b3547af6c0-44c0b6@inbox.mailtrap.io')
+                ->setBody("Merci de bien vouloir prendre contact avec l'expediteur afin d'inscrire son restaurant en base de données !".
+                    '<br>'. $data['nom'].'<br>'.$data['prenom'].'<br>'.$data['email'].'<br>'.$data['tel'],
+//                    $this->renderView(
+//                    // templates/emails/registration.html.twig
+//                        'emails/registration.html.twig',
+//                        array('name' => $name)
+//                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
+
+            # Notification
+            $this->addFlash('notice_inscription',
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
+
+            # Redirection
+            return $this->redirectToRoute('index_menu');
+        }
 
         return $this->render('front/MenuRestaurants.html.twig', [
             'restaurant' => $restaurant,
@@ -131,7 +194,7 @@ class IndexController extends AbstractController
             'menus' => $menus,
             'desserts' => $desserts,
             'boissons' => $boissons,
-            'form' => $form->createView()
+            'form_contact' => $form_contact->createView()
         ]);
     }
 
@@ -141,14 +204,45 @@ class IndexController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profil(Request $request)
+    public function profil(Request $request, \Swift_Mailer $mailer)
     {
-        # creation du formulaire ContactFormType
-        $form = $this->createForm(ContactFormType::class)
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
+        # Soumission du Formulaire
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
+
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom($data['email'])
+                ->setTo('b3547af6c0-44c0b6@inbox.mailtrap.io')
+                ->setBody("Merci de bien vouloir prendre contact avec l'expediteur afin d'inscrire son restaurant en base de données !".
+                    '<br>'. $data['nom'].'<br>'.$data['prenom'].'<br>'.$data['email'].'<br>'.$data['tel'],
+//                    $this->renderView(
+//                    // templates/emails/registration.html.twig
+//                        'emails/registration.html.twig',
+//                        array('name' => $name)
+//                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
+
+            # Notification
+            $this->addFlash('notice_inscription',
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
+
+            # Redirection
+            return $this->redirectToRoute('profil');
+        }
+
         return $this->render('membre/profil.html.twig', [
-            'form' => $form->createView()
+            'form_contact' => $form_contact->createView()
         ]);
     }
 }

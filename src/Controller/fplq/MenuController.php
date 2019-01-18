@@ -33,7 +33,7 @@ class MenuController extends AbstractController
     /**
      * @Route("/carte_restaurant/{restaurant}", name="carte_restaurant")
      */
-    public function carte(Request $request, Restaurant $restaurant)
+    public function carte(Request $request, Restaurant $restaurant, \Swift_Mailer $mailer)
     {
         # création d'une entrée, un menu, un dessert ou une boisson
         $entree = new Entree();
@@ -47,27 +47,57 @@ class MenuController extends AbstractController
         $dessert->setRestaurant($restaurant);
         $boisson->setRestaurant($restaurant);
 
-        # creation du formulaire ContactFormType
-        $form = $this->createForm(ContactFormType::class)
+        # Création du formulaire ContactFormType
+        $form_contact = $this->createForm(ContactFormType::class)
             ->handleRequest($request);
 
-        # création du formulaire EntreeFormType
+        # Création du formulaire EntreeFormType
         $form_entree = $this->createForm(EntreeFormType::class, $entree)
             ->handleRequest($request);
 
-        # création du formulaire MenuFormType
+        # Création du formulaire MenuFormType
         $form_menu = $this->createForm(MenuFormType::class, $menu)
             ->handleRequest($request);
 
-        # création du formulaire DessertFormType
+        # Création du formulaire DessertFormType
         $form_dessert = $this->createForm(DessertFormType::class, $dessert)
             ->handleRequest($request);
 
-        # création du formulaire BoissonFormType
+        # Création du formulaire BoissonFormType
         $form_boisson = $this->createForm(BoissonFormType::class, $boisson)
             ->handleRequest($request);
 
         # Soumission des Formulaires
+        if ($form_contact->isSubmitted() && $form_contact->isValid()) {
+
+            # Récupération des données pour SwiftMailer
+            $data = $form_contact->getData([]);
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom($data['email'])
+                ->setTo('b3547af6c0-44c0b6@inbox.mailtrap.io')
+                ->setBody("Merci de bien vouloir prendre contact avec l'expediteur afin d'inscrire son restaurant en base de données !".
+                    '<br>'. $data['nom'].'<br>'.$data['prenom'].'<br>'.$data['email'].'<br>'.$data['tel'],
+//                    $this->renderView(
+//                    // templates/emails/registration.html.twig
+//                        'emails/registration.html.twig',
+//                        array('name' => $name)
+//                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+//          b3547af6c0-44c0b6@inbox.mailtrap.io
+
+            # Notification
+            $this->addFlash('notice_inscription',
+                'Félicitations, votre envoi a bien été validé, un commercial vous contactera très prochainement!');
+
+            # Redirection
+            return $this->redirectToRoute('carte_restaurant');
+        }
+
         if ($form_entree->isSubmitted() && $form_entree->isValid()) {
 
             $photo_entree = $entree->getPhoto();
@@ -216,11 +246,11 @@ class MenuController extends AbstractController
 
         return $this->render('restaurant/carte.html.twig', [
             'restaurant' => $restaurant,
-            'form' => $form->createView(),
             'form_entree' => $form_entree->createView(),
             'form_menu' => $form_menu->createView(),
             'form_dessert' => $form_dessert->createView(),
             'form_boisson' => $form_boisson->createView(),
+            'form_contact' => $form_contact->createView()
         ]);
 
     }
