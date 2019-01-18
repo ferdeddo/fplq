@@ -27,7 +27,6 @@ class RestaurantController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/admin/inscription_restaurant", name="restaurant_inscription")
      */
-
     public function inscription(Request $request)
     {
         # création d'un restaurant

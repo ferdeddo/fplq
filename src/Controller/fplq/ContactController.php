@@ -19,7 +19,6 @@ class ContactController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-
     public function formulaire(Request $request)
     {
 

@@ -33,8 +33,6 @@ class MenuController extends AbstractController
     /**
      * @Route("/carte_restaurant/{restaurant}", name="carte_restaurant")
      */
-
-
     public function carte(Request $request, Restaurant $restaurant)
     {
         # création d'une entrée, un menu, un dessert ou une boisson
