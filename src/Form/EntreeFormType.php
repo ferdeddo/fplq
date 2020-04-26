@@ -59,6 +59,7 @@ class EntreeFormType extends AbstractType
                     'attr' => array ( 'class' => 'submit' )
                 ]);
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
