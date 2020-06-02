@@ -50,7 +50,7 @@ class Livraison
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="livraison")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="livraisons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $membre;
@@ -108,11 +108,18 @@ class Livraison
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getMembre(): ?Membre
     {
         return $this->membre;
     }
 
+    /**
+     * @param mixed $membre
+     * @return Membre
+     */
     public function setMembre(?Membre $membre): self
     {
         $this->membre = $membre;

@@ -107,40 +107,40 @@ class MenuController extends AbstractController
         }
 
 
-            if ($form_menu->isSubmitted() && $form_menu->isValid()) {
+        if ($form_menu->isSubmitted() && $form_menu->isValid()) {
 
+            $photo_menu = $menu->getPhoto();
+            if(null !== $photo_menu) {
+                # 1. Traitement de l'upload de l'image
+
+                // $photo stores the uploaded file
+                /** @var UploadedFile $photo_menu */
                 $photo_menu = $menu->getPhoto();
-                if(null !== $photo_menu) {
-                    # 1. Traitement de l'upload de l'image
 
-                    // $photo stores the uploaded file
-                    /** @var UploadedFile $photo_menu */
-                    $photo_menu = $menu->getPhoto();
+                $fileName_menu = $this->slugify($menu->getNom()) . '.' . $photo_menu->guessExtension();
 
-                    $fileName_menu = $this->slugify($menu->getNom()) . '.' . $photo_menu->guessExtension();
-
-                    // Move the file to the directory where images are stored
-                    try {
-                        $photo_menu->move(
-                            $this->getParameter('menus_assets_dir'),
-                            $fileName_menu
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
-
-                    # Mise à jour de l'image
-                    $menu->setPhoto($fileName_menu);
+                // Move the file to the directory where images are stored
+                try {
+                    $photo_menu->move(
+                        $this->getParameter('menus_assets_dir'),
+                        $fileName_menu
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
                 }
 
-                # Sauvegarde en BDD
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($menu);
-                $em->flush();
+                # Mise à jour de l'image
+                $menu->setPhoto($fileName_menu);
+            }
 
-                # Notification
-                $this->addFlash('notice_menu',
-                    'Félicitations, votre menu a bien été ajouté!');
+            # Sauvegarde en BDD
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($menu);
+            $em->flush();
+
+            # Notification
+            $this->addFlash('notice_menu',
+                'Félicitations, votre menu a bien été ajouté!');
         }
 
 

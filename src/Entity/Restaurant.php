@@ -136,6 +136,8 @@ class Restaurant
      */
     private $boissons;
 
+    private $roles;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();

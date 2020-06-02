@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints\Collection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -105,6 +105,11 @@ class Membre implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * Membre constructor.
+     * @param $livraisons
+     * @param $commandes
+     */
     public function __construct()
     {
         $this->livraisons = new ArrayCollection();
@@ -214,6 +219,16 @@ class Membre implements UserInterface
         return $this->livraisons;
     }
 
+    /**
+     * @param mixed $livraisons
+     * @return Membre
+     */
+    public function setLivraisons($livraisons)
+    {
+        $this->livraisons = $livraisons;
+        return $this;
+    }
+
     public function addLivraison(Livraison $livraison): self
     {
         if (!$this->livraisons->contains($livraison)) {
@@ -240,9 +255,19 @@ class Membre implements UserInterface
     /**
      * @return Collection|Commande[]
      */
-    public function getCommandes()
+    public function getCommandes(): Collection
     {
         return $this->commandes;
+    }
+
+    /**
+     * @param mixed $livraisons
+     * @return Membre
+     */
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+        return $this;
     }
 
     public function addCommande(Commande $commande): self

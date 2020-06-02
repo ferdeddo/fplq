@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="entree")
  * @ORM\Entity
  */
-class Entree
+class Entree /*extends \App\Entity\Menu*/
 {
     /**
      * @var int
@@ -62,6 +62,10 @@ class Entree
      */
     private $restaurant;
 
+    /**
+     * Entree constructor.
+     * @param $commandes
+     */
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -121,6 +125,25 @@ class Entree
     }
 
     /**
+     * @return mixed
+     */
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    /**
+     * @param mixed $restaurant
+     * @return Restaurant
+     */
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    /**
      * @return Collection|DetailsCommande[]
      */
     public function getCommandes(): Collection
@@ -132,7 +155,7 @@ class Entree
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes[] = $commande;
-            $commande->addMenu($this);
+            $commande->addEntree($this);
         }
 
         return $this;
@@ -142,26 +165,8 @@ class Entree
     {
         if ($this->commandes->contains($commande)) {
             $this->commandes->removeElement($commande);
-            $commande->removeMenu($this);
+            $commande->removeEntree($this);
         }
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    /**
-     * @return Entree
-     */
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
 
         return $this;
     }

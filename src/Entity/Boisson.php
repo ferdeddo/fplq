@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="boisson")
  * @ORM\Entity
  */
-class Boisson
+class Boisson /*extends \App\Entity\Menu*/
 {
     /**
      * @var int
@@ -52,16 +52,20 @@ class Boisson
     private $photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="dessert")
+     * @ORM\ManyToMany(targetEntity="App\Entity\DetailsCommande", mappedBy="boisson")
      */
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="desserts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="boissons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $restaurant;
 
+    /**
+     * Boisson constructor.
+     * @param $commandes
+     */
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -121,6 +125,25 @@ class Boisson
     }
 
     /**
+     * @return mixed
+     */
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    /**
+     * @param mixed $restaurant
+     * @return Restaurant
+     */
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    /**
      * @return Collection|DetailsCommande[]
      */
     public function getCommandes(): Collection
@@ -132,7 +155,7 @@ class Boisson
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes[] = $commande;
-            $commande->addMenu($this);
+            $commande->addBoisson($this);
         }
 
         return $this;
@@ -142,20 +165,8 @@ class Boisson
     {
         if ($this->commandes->contains($commande)) {
             $this->commandes->removeElement($commande);
-            $commande->removeMenu($this);
+            $commande->removeBoisson($this);
         }
-
-        return $this;
-    }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
 
         return $this;
     }

@@ -44,13 +44,31 @@ class DetailsCommande
     private $commande;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Entree", inversedBy="commandes")
+     */
+    private $entree;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Menu", inversedBy="commandes")
      */
     private $menu;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Dessert", inversedBy="commandes")
+     */
+    private $dessert;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Boisson", inversedBy="commandes")
+     */
+    private $boisson;
+
     public function __construct()
     {
+        $this->entree = new ArrayCollection();
         $this->menu = new ArrayCollection();
+        $this->dessert = new ArrayCollection();
+        $this->boisson = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +113,32 @@ class DetailsCommande
     }
 
     /**
+     * @return Collection|Entree[]
+     */
+    public function getEntree(): Collection
+    {
+        return $this->entree;
+    }
+
+    public function addEntree(Entree $entree): self
+    {
+        if (!$this->entree->contains($entree)) {
+            $this->entree[] = $entree;
+        }
+
+        return $this;
+    }
+
+    public function removeEntree(Entree $entree): self
+    {
+        if ($this->entree->contains($entree)) {
+            $this->entree->removeElement($entree);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Menu[]
      */
     public function getMenu(): Collection
@@ -120,5 +164,55 @@ class DetailsCommande
         return $this;
     }
 
+    /**
+     * @return Collection|Dessert[]
+     */
+    public function getDessert(): Collection
+    {
+        return $this->dessert;
+    }
 
+    public function addDessert(Dessert $dessert): self
+    {
+        if (!$this->dessert->contains($dessert)) {
+            $this->dessert[] = $dessert;
+        }
+
+        return $this;
+    }
+
+    public function removeDessert(Dessert $dessert): self
+    {
+        if ($this->dessert->contains($dessert)) {
+            $this->dessert->removeElement($dessert);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Boisson[]
+     */
+    public function getBoisson(): Collection
+    {
+        return $this->boisson;
+    }
+
+    public function addBoisson(Boisson $boisson): self
+    {
+        if (!$this->boisson->contains($boisson)) {
+            $this->boisson[] = $boisson;
+        }
+
+        return $this;
+    }
+
+    public function removeBoisson(Boisson $boisson): self
+    {
+        if ($this->boisson->contains($boisson)) {
+            $this->boisson->removeElement($boisson);
+        }
+
+        return $this;
+    }
 }
