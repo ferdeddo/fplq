@@ -43,7 +43,7 @@ class Commande
     private $etat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="commande")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $membre;
@@ -94,11 +94,18 @@ class Commande
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getMembre(): ?Membre
     {
         return $this->membre;
     }
 
+    /**
+     * @param mixed $membre
+     * @return Membre
+     */
     public function setMembre(?Membre $membre): self
     {
         $this->membre = $membre;

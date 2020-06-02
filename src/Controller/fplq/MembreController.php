@@ -101,7 +101,7 @@ class MembreController extends AbstractController
             $membre->setPassword($passwordEncoder
                 ->encodePassword($membre, $membre->getPassword()));
 
-            #methode permettant de creer un utilisateur en ADMIN
+            #methode permettant de créer un utilisateur en ADMIN
             #$membre->addRole("ROLE_ADMIN");
 
             # Sauvegarde en BDD

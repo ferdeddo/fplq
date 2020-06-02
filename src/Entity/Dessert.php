@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="dessert")
  * @ORM\Entity
  */
-class Dessert
+class Dessert /*extends \App\Entity\Menu*/
 {
     /**
      * @var int
@@ -62,6 +62,10 @@ class Dessert
      */
     private $restaurant;
 
+    /**
+     * Dessert constructor.
+     * @param $commandes
+     */
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -121,6 +125,25 @@ class Dessert
     }
 
     /**
+     * @return mixed
+     */
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    /**
+     * @param mixed $restaurant
+     * @return Restaurant
+     */
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    /**
      * @return Collection|DetailsCommande[]
      */
     public function getCommandes(): Collection
@@ -132,7 +155,7 @@ class Dessert
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes[] = $commande;
-            $commande->addMenu($this);
+            $commande->addDessert($this);
         }
 
         return $this;
@@ -142,20 +165,8 @@ class Dessert
     {
         if ($this->commandes->contains($commande)) {
             $this->commandes->removeElement($commande);
-            $commande->removeMenu($this);
+            $commande->removeDessert($this);
         }
-
-        return $this;
-    }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
 
         return $this;
     }

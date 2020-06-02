@@ -62,6 +62,10 @@ class Menu
      */
     private $restaurant;
 
+    /**
+     * Menu constructor.
+     * @param $commandes
+     */
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -120,6 +124,18 @@ class Menu
         return $this;
     }
 
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
     /**
      * @return Collection|DetailsCommande[]
      */
@@ -144,18 +160,6 @@ class Menu
             $this->commandes->removeElement($commande);
             $commande->removeMenu($this);
         }
-
-        return $this;
-    }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
 
         return $this;
     }
